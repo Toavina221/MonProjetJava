@@ -1,3 +1,4 @@
+package etudiants;
 public class Etudiant {
     //Encapsulation
     private String matricule ;
