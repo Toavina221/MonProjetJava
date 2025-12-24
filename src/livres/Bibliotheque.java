@@ -1,3 +1,4 @@
+package livres;
 import java.util.HashMap;
 
 public class Bibliotheque {

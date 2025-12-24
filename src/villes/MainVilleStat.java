@@ -1,3 +1,4 @@
+package ville;
 public class MainVilleStat {
     public static void main(String[] args) {
         VilleStats liste = new VilleStats();
