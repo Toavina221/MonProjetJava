@@ -37,10 +37,10 @@ public class Etudiant {
     public String toString(){
         return "Information sur l'élève matriculé :" + matricule +
         "\n----------------------------------------\n\t Nom :" + nom +
-         "\n\t Prenom :" + prenom +
-         "\n\t Age :" + age +
-         "\n\t Filière :" + filiere +
-         "\n\t Moyenne :" + moyenne;
+         "\t Prenom :" + prenom +
+         "\t Age :" + age +
+         "\t Filière :" + filiere +
+         "\t Moyenne :" + moyenne;
     }
 
     //Methode estAdmis

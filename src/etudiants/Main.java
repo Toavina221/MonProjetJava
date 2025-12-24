@@ -59,7 +59,7 @@ public class Main {
         gestion.ajouterEtudiant(etu24);
        gestion.ajouterEtudiant(etu25);
 
-       gestion.rechercherParNom("Durand");
+       gestion.afficherToutEtudiants();
  
 
 

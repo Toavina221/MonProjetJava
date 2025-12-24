@@ -42,7 +42,7 @@ public class GestionEtudiants  {
         }
          else if(listeEtudiant.containsKey(matricule)){
             Etudiant etudiant = listeEtudiant.get(matricule);
-            System.out.println(etudiant.toString());
+            System.out.println("\t Nom et  Prénom : "   + etudiant.getPrenom() + "  " + etudiant.getMatricule());
             return etudiant;
         }
         else{
@@ -66,7 +66,7 @@ public class GestionEtudiants  {
             }
             System.out.println("Les élèves portant le nom de : " + nom  + " sont (" + listeMemeNom.size() + ") : " );
             for(Etudiant etudiant : listeMemeNom){
-                System.out.println(etudiant.toString());
+                 System.out.println("\t Prénom : "   + etudiant.getPrenom() + "\t Matricule : " + etudiant.getMatricule());
             }
             return listeMemeNom;
         }
