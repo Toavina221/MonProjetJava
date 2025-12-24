@@ -34,14 +34,13 @@ public class Etudiant {
     public void setMoyenne(double moyenne){this.moyenne = moyenne;}
 
     //Methodes toString
-    public void toStringEtudiant(){
-        System.out.println("Information sur l'élève matriculé :" + matricule);
-        System.out.println("----------------------------------------");
-        System.out.println("\t Nom :" + nom);
-        System.out.println("\t Prenom :" + prenom);
-        System.out.println("\t Age :" + age);
-        System.out.println("\t Filière :" + filiere);
-        System.out.println("\t Moyenne :" + moyenne);
+    public String toString(){
+        return "Information sur l'élève matriculé :" + matricule +
+        "\n----------------------------------------\n\t Nom :" + nom +
+         "\n\t Prenom :" + prenom +
+         "\n\t Age :" + age +
+         "\n\t Filière :" + filiere +
+         "\n\t Moyenne :" + moyenne;
     }
 
     //Methode estAdmis
@@ -55,9 +54,4 @@ public class Etudiant {
             return false;
         }
     }
-
-    
-
-    
-
 }

@@ -42,7 +42,7 @@ public class GestionEtudiants  {
         }
          else if(listeEtudiant.containsKey(matricule)){
             Etudiant etudiant = listeEtudiant.get(matricule);
-            etudiant.toStringEtudiant();
+            System.out.println(etudiant.toString());
             return etudiant;
         }
         else{
@@ -66,7 +66,7 @@ public class GestionEtudiants  {
             }
             System.out.println("Les élèves portant le nom de : " + nom  + " sont (" + listeMemeNom.size() + ") : " );
             for(Etudiant etudiant : listeMemeNom){
-                etudiant.toStringEtudiant();
+                System.out.println(etudiant.toString());
             }
             return listeMemeNom;
         }
@@ -97,7 +97,7 @@ public class GestionEtudiants  {
             System.out.println("Listes de tous les élèves :");
             System.out.println("----------------------------");
             for(Etudiant etudiant : listeEtudiant.values()){
-                etudiant.toStringEtudiant();
+                System.out.println(etudiant.toString());
             }
             System.out.println("Total : " + listeEtudiant.size() + " étudiant ");
         }
@@ -139,4 +139,35 @@ public class GestionEtudiants  {
         }
         return listeParFiliere;
     } 
+
+    //calculer et retourner la moyenne générale de tous les étudiants
+    public double calculerMoyenneGenerale(){
+        if (listeEtudiant.isEmpty()) {
+            System.err.println("Erreur , la liste est vide ");
+            return 0; 
+        }
+        else{
+            System.out.println("La moyenne générale :");
+            System.out.println("---------------------");
+            double somme =0 ; 
+            for(Etudiant etudiant : listeEtudiant.values()){
+                somme +=  etudiant.getMoyenne();
+            }
+              double moyenne = somme / listeEtudiant.size() ;
+              System.out.println("Sur les " + listeEtudiant.size() + " etudiant , la moyenne générale est " + moyenne);
+              return moyenne;
+        }
+    } 
+
+    // deterliner le nombre d'etudiants
+    public Integer nombreEtudiants(){
+        if(listeEtudiant.isEmpty()){
+            System.err.println("Erreur , la liste est vide ");
+            return 0;
+        }
+        else{
+            System.out.println("On a " + listeEtudiant.size() + " etudiants au total. ");
+            return listeEtudiant.size();
+        }
+    }
 }

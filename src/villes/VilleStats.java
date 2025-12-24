@@ -119,6 +119,7 @@ public class VilleStats {
         System.out.println("On a  " + moyenne + " population en moyenne ! (" + GestionVille.size() +" villes)");
         return moyenne ;
     }
-    // 
+
+
     
 }

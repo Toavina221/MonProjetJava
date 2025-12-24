@@ -57,10 +57,10 @@ public class Main {
         gestion.ajouterEtudiant(etu22);
         gestion.ajouterEtudiant(etu23);
         gestion.ajouterEtudiant(etu24);
-        gestion.ajouterEtudiant(etu25);
- 
-        gestion.afficherEtudiantParFiliere("Mathématiques");
+       gestion.ajouterEtudiant(etu25);
 
+       gestion.rechercherParNom("Durand");
+ 
 
 
     }
