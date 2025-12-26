@@ -1,7 +1,6 @@
  package films; 
  import java.util.ArrayList;
- import java.util.Collections ;
- import java.util.Comparator;
+ import java.util.Collections ; 
 
 public class Film {
     //encapsulation
@@ -15,6 +14,11 @@ public class Film {
         this.realisateur = realisateur ;
         this.notes = new ArrayList<>();
     }
+
+    //getters
+    public String getTitre(){return titre;}
+    public String getRealisateur(){return realisateur;}
+    public ArrayList<Double> getNotes(){return notes;}
 
     //Méthodes 
     public void ajouterNote(double note){
@@ -54,7 +58,6 @@ public class Film {
                 somme += note ;
             }
             double moyenne = somme/notes.size();
-            System.out.println("Titre :" + titre + "\t Moyenne des notes " + moyenne);
             return moyenne ;
         }
     }
@@ -65,9 +68,8 @@ public class Film {
             System.out.println("Notes indisponibles");
             return 0.0 ;
         }
-        else{
-            double meilleur = Collections.max(notes);
-            return meilleur ;
+        else{ 
+            return  Collections.max(notes) ;
         }
     }
 
@@ -82,6 +84,6 @@ public class Film {
         }
     }
 
-    
+
 
 }
