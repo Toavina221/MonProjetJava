@@ -14,30 +14,21 @@ public class Main {
 
         films.noterFilm("Inception", 0);;
         films.noterFilm("Inception" ,6);
-        films.noterFilm("Inception",7);
-        films.noterFilm("Inception",5);
+        films.noterFilm("Inception",7); 
 
         films.noterFilm("Avatar",8);
-        films.noterFilm("Avatar",8);
-        films.noterFilm("Avatar",4);
+        films.noterFilm("Avatar",8); 
 
         films.noterFilm("Oppenheimer",4);
-        films.noterFilm("Oppenheimer",7);
-        films.noterFilm("Oppenheimer",9);
+        films.noterFilm("Oppenheimer",7); 
 
         films.afficherFilms();
-        films.afficherStats("Inception");
-        films.afficherStats("Avatar");
-        films.afficherStats("Oppenheimer");
+        films.afficherStats("Inception"); 
 
         film2.ajouterNote(4);
-        film2.ajouterNote(5.5);
-        film2.ajouterNote(6);
+        film2.ajouterNote(5.5); 
 
         System.out.println(" meilleur note du film Avatar :" + film2.meilleureNote()); 
-
-
- 
         
     }
 }

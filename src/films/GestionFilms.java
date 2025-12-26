@@ -62,7 +62,5 @@ public class GestionFilms {
             System.err.println("Erreur , ce film n'est pas disponible "); 
         }
     }
-    
-
 
 }
