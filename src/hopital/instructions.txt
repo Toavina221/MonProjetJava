@@ -1,0 +1,282 @@
+🏥 Système de Gestion d'Hôpital - POO avec HashMap
+Contexte
+Vous devez créer un système de gestion pour un petit hôpital. Le système doit gérer les patients, les médecins, les rendez-vous et les prescriptions médicales.
+
+Spécifications
+1. Classe Patient
+Attributs :
+
+idPatient (String) - identifiant unique
+
+nom (String)
+
+prenom (String)
+
+dateNaissance (String/LocalDate)
+
+genre (char) - 'M' ou 'F'
+
+groupeSanguin (String) - "A+", "B-", etc.
+
+antecedents (ArrayList<String>) - liste des antécédents médicaux
+
+assuranceMedicale (String) - numéro de sécurité sociale
+
+estHospitalise (boolean)
+
+Méthodes :
+
+Constructeur
+
+Getters/Setters
+
+toString()
+
+ajouterAntecedent(String antecedent)
+
+calculerAge() - retourne l'âge en années
+
+estAdulte() - true si âge ≥ 18
+
+2. Classe Medecin
+Attributs :
+
+idMedecin (String) - identifiant unique
+
+nom (String)
+
+prenom (String)
+
+specialite (String) - "Cardiologie", "Pédiatrie", etc.
+
+numeroRPPS (String) - numéro professionnel unique
+
+anneesExperience (int)
+
+disponibilite (boolean) - si disponible pour nouveaux patients
+
+nombrePatientsMax (int) - capacité max (ex: 50)
+
+Méthodes :
+
+Constructeur
+
+Getters/Setters
+
+toString()
+
+peutPrendreNouveauPatient() - vérifie la capacité
+
+3. Classe RendezVous
+Attributs :
+
+idRendezVous (String) - identifiant unique
+
+patient (Patient)
+
+medecin (Medecin)
+
+dateHeure (LocalDateTime)
+
+motif (String) - raison de la consultation
+
+duree (int) - durée en minutes (15, 30, 60)
+
+statut (String) - "Planifié", "Confirmé", "Annulé", "Terminé"
+
+salle (String) - numéro de salle
+
+Méthodes :
+
+Constructeur
+
+Getters/Setters
+
+toString()
+
+estPasse() - vérifie si la date/heure est passée
+
+annuler() - change le statut
+
+4. Classe Prescription
+Attributs :
+
+idPrescription (String)
+
+patient (Patient)
+
+medecin (Medecin)
+
+datePrescription (LocalDate)
+
+medicaments (HashMap<String, String>) - clé: nom médicament, valeur: posologie
+
+examens (ArrayList<String>) - examens à faire
+
+renouvelable (boolean)
+
+dateExpiration (LocalDate) - date de fin de validité
+
+Méthodes :
+
+Constructeur
+
+Getters/Setters
+
+toString()
+
+ajouterMedicament(String nom, String posologie)
+
+estValide() - vérifie si non expirée
+
+5. Classe Hopital (Coeur du système)
+Attributs :
+
+HashMap<String, Patient> patients
+
+HashMap<String, Medecin> medecins
+
+HashMap<String, RendezVous> rendezVous
+
+HashMap<String, Prescription> prescriptions
+
+nomHopital (String)
+
+adresse (String)
+
+Méthodes :
+
+Gestion Patients :
+
+enregistrerPatient(Patient p)
+
+rechercherPatient(String id)
+
+listerPatientsHospitalises()
+
+listerPatientsParGenre(char genre)
+
+calculerMoyenneAge() - âge moyen des patients
+
+Gestion Médecins :
+
+ajouterMedecin(Medecin m)
+
+rechercherMedecinParSpecialite(String specialite)
+
+medecinAvecPlusExperience()
+
+Gestion Rendez-vous :
+
+prendreRendezVous(String idPatient, String idMedecin, LocalDateTime date, String motif)
+
+annulerRendezVous(String idRDV)
+
+afficherRendezVousJour(LocalDate date)
+
+afficherRendezVousMedecin(String idMedecin, LocalDate date)
+
+verifierDisponibiliteMedecin(String idMedecin, LocalDateTime date)
+
+Gestion Prescriptions :
+
+creerPrescription(String idPatient, String idMedecin)
+
+afficherPrescriptionsPatient(String idPatient)
+
+prescriptionsExpirees() - liste des prescriptions à renouveler
+
+Statistiques :
+
+nombreTotalPatients()
+
+nombreMedecinsParSpecialite()
+
+tauxOccupationMedecins() - % de capacité utilisée
+
+specialiteLaPlusDemandee()
+
+6. Classe MainHopital
+Menu interactif avec ces options :
+
+text
+=== GESTION HÔPITAL ===
+1. Gestion Patients
+   1.1 Enregistrer nouveau patient
+   1.2 Rechercher patient
+   1.3 Afficher patients hospitalisés
+   1.4 Afficher statistiques patients
+
+2. Gestion Médecins
+   2.1 Ajouter médecin
+   2.2 Lister médecins par spécialité
+   2.3 Médecin disponible
+
+3. Gestion Rendez-vous
+   3.1 Prendre RDV
+   3.2 Annuler RDV
+   3.3 Afficher RDV du jour
+   3.4 Afficher RDV d'un médecin
+
+4. Gestion Prescriptions
+   4.1 Créer prescription
+   4.2 Afficher prescriptions patient
+   4.3 Prescriptions à renouveler
+
+5. Statistiques
+   5.1 Tableau de bord
+   5.2 Occupation médecins
+   5.3 Spécialités en demande
+
+6. Urgences (Bonus)
+   6.1 Patient urgent
+   6.2 Médecin de garde
+   6.3 Lit disponible
+
+7. Quitter
+Contraintes Techniques
+Utilisez 4 HashMap différentes (patients, médecins, RDV, prescriptions)
+
+Gestion du temps : Utilisez LocalDate et LocalDateTime
+
+Validation :
+
+Un patient ne peut avoir qu'un RDV à la même heure
+
+Un médecin ne peut avoir qu'un RDV à la même heure
+
+Vérifier la disponibilité avant de prendre RDV
+
+Un patient doit exister avant de prendre RDV
+
+Gestion des conflits : RDV qui se chevauchent
+
+Recherches avancées :
+
+Recherche par date
+
+Recherche par spécialité
+
+Filtrage par statut
+
+Exemples de données
+Patients :
+
+java
+new Patient("PAT001", "Dupont", "Jean", "15/05/1980", 'M', "A+", "123456789012345")
+new Patient("PAT002", "Martin", "Marie", "22/08/1995", 'F', "O-", "234567890123456")
+Médecins :
+
+java
+new Medecin("MED001", "Bernard", "Pierre", "Cardiologie", "RPPS12345", 15)
+new Medecin("MED002", "Petit", "Sophie", "Pédiatrie", "RPPS67890", 8)
+Complexités à gérer
+Surcharge de méthodes pour différentes recherches
+
+Gestion des collections imbriquées (listes dans les objets)
+
+Vérification d'intégrité entre les différentes HashMap
+
+Calculs statistiques sur les données
+
+Gestion des dépendances (un RDV dépend d'un patient ET d'un médecin)

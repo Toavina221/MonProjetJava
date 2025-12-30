@@ -1,0 +1,352 @@
+🏢 Système de Gestion de Ressources Humaines (RH) - POO avec HashMap
+Contexte
+Vous devez créer un système complet de gestion des ressources humaines pour une entreprise. Le système gère les employés, les départements, les postes, les congés et les évaluations de performance.
+
+Spécifications
+1. Classe Employe
+Attributs :
+
+matricule (String) - identifiant unique (ex: EMP2024001)
+
+nom (String)
+
+prenom (String)
+
+dateNaissance (LocalDate)
+
+dateEmbauche (LocalDate)
+
+poste (String) - "Développeur", "Commercial", etc.
+
+departement (String) - "IT", "Ventes", "RH"
+
+salaireBase (double)
+
+niveauExperience (int) - de 1 (débutant) à 5 (expert)
+
+statut (String) - "CDI", "CDD", "Stage", "Interim"
+
+telephone (String)
+
+email (String)
+
+adresse (String)
+
+Méthodes :
+
+Constructeur
+
+Getters/Setters
+
+toString()
+
+calculerAnciennete() - années dans l'entreprise
+
+calculerAge() - âge actuel
+
+estEnEssai() - true si embauché depuis moins de 3 mois
+
+calculerSalaireMensuel() - avec primes éventuelles
+
+2. Classe Departement
+Attributs :
+
+codeDepartement (String) - ex: "IT", "RH", "FIN"
+
+nomDepartement (String) - "Informatique", "Ressources Humaines"
+
+manager (Employe) - responsable du département
+
+budgetAnnuel (double)
+
+nombrePostesAutorises (int)
+
+dateCreation (LocalDate)
+
+objectifs (ArrayList<String>) - objectifs annuels
+
+Méthodes :
+
+Constructeur
+
+Getters/Setters
+
+toString()
+
+calculerEffectif() - nombre d'employés dans le département
+
+estBudgetDepasse() - vérifie par rapport aux salaires
+
+tauxOccupation() - % postes occupés
+
+3. Classe Conge
+Attributs :
+
+idConge (String)
+
+employe (Employe)
+
+typeConge (String) - "Annuel", "Maladie", "Maternité", "Formation"
+
+dateDebut (LocalDate)
+
+dateFin (LocalDate)
+
+dureeJours (int)
+
+statut (String) - "En attente", "Approuvé", "Refusé", "Terminé"
+
+motif (String) - raison du congé
+
+dateDemande (LocalDate)
+
+approuvePar (Employe) - manager qui a approuvé
+
+Méthodes :
+
+Constructeur
+
+Getters/Setters
+
+toString()
+
+estEnCours() - vérifie si la date actuelle est dans la période
+
+calculerJoursRestants() - pour les congés annuels
+
+estValide() - vérifie chevauchement avec autres congés
+
+4. Classe Evaluation
+Attributs :
+
+idEvaluation (String)
+
+employe (Employe)
+
+evaluateur (Employe) - manager qui évalue
+
+dateEvaluation (LocalDate)
+
+periode (String) - "Trimestre 1 2024", "Annuel 2023"
+
+noteGlobale (double) - de 1 à 5
+
+competences (HashMap<String, Integer>) - clé: compétence, valeur: note 1-5
+
+Ex: {"Communication": 4, "Leadership": 3, "Technique": 5}
+
+commentaires (String)
+
+objectifsFuturs (ArrayList<String>)
+
+recommandation (String) - "Promotion", "Formation", "Maintien"
+
+Méthodes :
+
+Constructeur
+
+Getters/Setters
+
+toString()
+
+ajouterCompetence(String competence, int note)
+
+calculerMoyenneCompetences()
+
+suggereFormation() - retourne les compétences à améliorer
+
+5. Classe GestionRH (Système principal)
+Attributs :
+
+HashMap<String, Employe> employes
+
+HashMap<String, Departement> departements
+
+HashMap<String, Conge> conges
+
+HashMap<String, Evaluation> evaluations
+
+HashMap<String, ArrayList<Conge>> planningConges - par mois
+
+nomEntreprise (String)
+
+anneeFiscale (int)
+
+Méthodes :
+
+Gestion Employés :
+
+embaucherEmploye(Employe e)
+
+licencierEmploye(String matricule)
+
+rechercherEmploye(String matricule)
+
+listerEmployesDepartement(String codeDept)
+
+promouvoirEmploye(String matricule, String nouveauPoste, double augmentation)
+
+calculerMasseSalariale() - total des salaires
+
+employesEnEssai() - liste des employés en période d'essai
+
+Gestion Départements :
+
+creerDepartement(Departement d)
+
+supprimerDepartement(String code)
+
+afficherStatistiquesDepartement(String code)
+
+reaffecterEmploye(String matricule, String nouveauDept)
+
+departementSousEffectif() - liste départements avec postes vacants
+
+Gestion Congés :
+
+demanderConge(String matricule, Conge c)
+
+approuverConge(String idConge, String matriculeManager)
+
+refuserConge(String idConge, String raison)
+
+verifierDisponibilite(String matricule, LocalDate debut, LocalDate fin)
+
+congesEnCours() - liste des congés actuels
+
+calculerSoldeConges(String matricule) - jours de congés restants
+
+Gestion Évaluations :
+
+creerEvaluation(Evaluation e)
+
+afficherHistoriqueEvaluations(String matricule)
+
+meilleursEmployes(int nombre) - top N employés
+
+employesBesoinFormation() - employés avec note < 3
+
+statistiquesPerformance() - moyennes par département
+
+Rapports & Statistiques :
+
+genererRapportMensuel() - embauches, départs, congés
+
+tauxTurnover() - % de départ sur l'année
+
+repartitionParPoste() - nombre d'employés par poste
+
+ageMoyen() - âge moyen des employés
+
+ancienneteMoyenne() - ancienneté moyenne
+
+budgetVsReel() - comparaison budget/salaires réels
+
+6. Classe MainRH
+Menu interactif :
+
+text
+=== SYSTÈME RESSOURCES HUMAINES ===
+1. Gestion Employés
+   1.1 Embaucher nouvel employé
+   1.2 Rechercher employé
+   1.3 Lister employés par département
+   1.4 Promouvoir employé
+   1.5 Licencier employé
+
+2. Gestion Départements
+   2.1 Créer département
+   2.2 Afficher statistiques département
+   2.3 Réaffecter employé
+   2.4 Budgets départementaux
+
+3. Gestion Congés
+   3.1 Demander congé
+   3.2 Approuver/Refuser congé
+   3.3 Vérifier disponibilité
+   3.4 Solde de congés
+   3.5 Planning des congés
+
+4. Gestion Évaluations
+   4.1 Créer évaluation
+   4.2 Historique des évaluations
+   4.3 Meilleurs employés
+   4.4 Besoins en formation
+
+5. Rapports
+   5.1 Rapport mensuel
+   5.2 Masse salariale
+   5.3 Taux de turnover
+   5.4 Statistiques démographiques
+   5.5 Analyse des performances
+
+6. Utilitaires
+   6.1 Sauvegarder données
+   6.2 Charger données
+   6.3 Recherche avancée
+
+7. Quitter
+Contraintes Techniques
+Relations complexes : Un employé appartient à un département, un département a un manager (employé)
+
+Vérifications croisées :
+
+Un manager ne peut approuver ses propres congés
+
+Un employé ne peut avoir 2 congés qui se chevauchent
+
+Vérifier le budget avant une promotion
+
+Calculs avancés :
+
+Congés : déduire les weekends et jours fériés
+
+Salaires : calculer avec ancienneté et prime
+
+Statistiques : moyennes, pourcentages, tendances
+
+Gestion du temps : Périodes d'essai, ancienneté, dates de congés
+
+Recherches multiples :
+
+Par compétence
+
+Par période
+
+Par statut
+
+Par performance
+
+Exemples de données
+Employés :
+
+java
+new Employe("EMP2024001", "Dupont", "Jean", "15/05/1985", "15/01/2020", 
+           "Développeur Senior", "IT", 45000, 4, "CDI", "0123456789", 
+           "j.dupont@entreprise.com", "123 Rue de Paris")
+Départements :
+
+java
+new Departement("IT", "Informatique", managerIT, 500000, 25, "01/01/2015")
+Congés :
+
+java
+new Conge("CONG001", emp1, "Annuel", "01/08/2024", "15/08/2024", 10, "En attente", 
+          "Vacances été", "15/06/2024")
+Défis à relever
+Gestion hiérarchique : Relations employé-manager-département
+
+Calculs financiers : Salaires, budgets, coûts
+
+Planification : Congés, évaluations périodiques
+
+Analyse de données : Statistiques pour prise de décision
+
+Workflows : Processus d'approbation des congés
+
+Points forts de cet exercice
+✅ Réaliste : Simule un vrai système RH d'entreprise
+✅ Complet : Couvre tous les aspects de la gestion du personnel
+✅ Complexe : Relations entre objets, calculs, validations
+✅ Pratique : Compétences directement applicables en entreprise
+✅ Évolutif : Possibilité d'ajouter de nombreuses fonctionnalités

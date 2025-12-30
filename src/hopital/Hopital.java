@@ -129,6 +129,10 @@ public class Hopital {
         }
     } 
 
+    //GESTION MEDECINS
+    //ajouter un medecin
+
+
     
      
 
