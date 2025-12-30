@@ -4,243 +4,145 @@ Vous devez créer un système complet de gestion des ressources humaines pour un
 
 Spécifications
 1. Classe Employe
+
 Attributs :
-
-matricule (String) - identifiant unique (ex: EMP2024001)
-
-nom (String)
-
-prenom (String)
-
-dateNaissance (LocalDate)
-
-dateEmbauche (LocalDate)
-
-poste (String) - "Développeur", "Commercial", etc.
-
-departement (String) - "IT", "Ventes", "RH"
-
-salaireBase (double)
-
-niveauExperience (int) - de 1 (débutant) à 5 (expert)
-
-statut (String) - "CDI", "CDD", "Stage", "Interim"
-
-telephone (String)
-
-email (String)
-
-adresse (String)
+    matricule (String) - identifiant unique (ex: EMP2024001)
+    nom (String)
+    prenom (String)
+    dateNaissance (LocalDate)
+    dateEmbauche (LocalDate)
+    poste (String) - "Développeur", "Commercial", etc.
+    departement (String) - "IT", "Ventes", "RH"
+    salaireBase (double)
+    niveauExperience (int) - de 1 (débutant) à 5 (expert)
+    statut (String) - "CDI", "CDD", "Stage", "Interim"
+    telephone (String)
+    email (String)
+    adresse (String)
 
 Méthodes :
-
-Constructeur
-
-Getters/Setters
-
-toString()
-
-calculerAnciennete() - années dans l'entreprise
-
-calculerAge() - âge actuel
-
-estEnEssai() - true si embauché depuis moins de 3 mois
-
-calculerSalaireMensuel() - avec primes éventuelles
+    Constructeur
+    Getters/Setters
+    toString()
+    calculerAnciennete() - années dans l'entreprise
+    calculerAge() - âge actuel
+    estEnEssai() - true si embauché depuis moins de 3 mois
+    calculerSalaireMensuel() - avec primes éventuelles
 
 2. Classe Departement
+
 Attributs :
-
-codeDepartement (String) - ex: "IT", "RH", "FIN"
-
-nomDepartement (String) - "Informatique", "Ressources Humaines"
-
-manager (Employe) - responsable du département
-
-budgetAnnuel (double)
-
-nombrePostesAutorises (int)
-
-dateCreation (LocalDate)
-
-objectifs (ArrayList<String>) - objectifs annuels
+    codeDepartement (String) - ex: "IT", "RH", "FIN"
+    nomDepartement (String) - "Informatique", "Ressources Humaines"
+    manager (Employe) - responsable du département
+    budgetAnnuel (double)
+    nombrePostesAutorises (int)
+    dateCreation (LocalDate)
+    objectifs (ArrayList<String>) - objectifs annuels
 
 Méthodes :
-
-Constructeur
-
-Getters/Setters
-
-toString()
-
-calculerEffectif() - nombre d'employés dans le département
-
-estBudgetDepasse() - vérifie par rapport aux salaires
-
-tauxOccupation() - % postes occupés
+    Constructeur
+    Getters/Setters
+    toString()
+    calculerEffectif() - nombre d'employés dans le département
+    estBudgetDepasse() - vérifie par rapport aux salaires
+    tauxOccupation() - % postes occupés
 
 3. Classe Conge
+
 Attributs :
-
-idConge (String)
-
-employe (Employe)
-
-typeConge (String) - "Annuel", "Maladie", "Maternité", "Formation"
-
-dateDebut (LocalDate)
-
-dateFin (LocalDate)
-
-dureeJours (int)
-
-statut (String) - "En attente", "Approuvé", "Refusé", "Terminé"
-
-motif (String) - raison du congé
-
-dateDemande (LocalDate)
-
-approuvePar (Employe) - manager qui a approuvé
+    idConge (String)
+    employe (Employe)
+    typeConge (String) - "Annuel", "Maladie", "Maternité", "Formation"
+    dateDebut (LocalDate)
+    dateFin (LocalDate)
+    dureeJours (int)
+    statut (String) - "En attente", "Approuvé", "Refusé", "Terminé"
+    motif (String) - raison du congé
+    dateDemande (LocalDate)
+    approuvePar (Employe) - manager qui a approuvé
 
 Méthodes :
-
-Constructeur
-
-Getters/Setters
-
-toString()
-
-estEnCours() - vérifie si la date actuelle est dans la période
-
-calculerJoursRestants() - pour les congés annuels
-
-estValide() - vérifie chevauchement avec autres congés
+    Constructeur
+    Getters/Setters
+    toString()
+    estEnCours() - vérifie si la date actuelle est dans la période
+    calculerJoursRestants() - pour les congés annuels
+    estValide() - vérifie chevauchement avec autres congés
 
 4. Classe Evaluation
+
 Attributs :
-
-idEvaluation (String)
-
-employe (Employe)
-
-evaluateur (Employe) - manager qui évalue
-
-dateEvaluation (LocalDate)
-
-periode (String) - "Trimestre 1 2024", "Annuel 2023"
-
-noteGlobale (double) - de 1 à 5
-
-competences (HashMap<String, Integer>) - clé: compétence, valeur: note 1-5
-
-Ex: {"Communication": 4, "Leadership": 3, "Technique": 5}
-
-commentaires (String)
-
-objectifsFuturs (ArrayList<String>)
-
-recommandation (String) - "Promotion", "Formation", "Maintien"
+    idEvaluation (String)
+    employe (Employe)
+    evaluateur (Employe) - manager qui évalue
+    dateEvaluation (LocalDate)
+    periode (String) - "Trimestre 1 2024", "Annuel 2023"
+    noteGlobale (double) - de 1 à 5
+    competences (HashMap<String, Integer>) - clé: compétence, valeur: note 1-5
+        Ex: {"Communication": 4, "Leadership": 3, "Technique": 5}
+    commentaires (String)
+    objectifsFuturs (ArrayList<String>)
+    recommandation (String) - "Promotion", "Formation", "Maintien"
 
 Méthodes :
-
-Constructeur
-
-Getters/Setters
-
-toString()
-
-ajouterCompetence(String competence, int note)
-
-calculerMoyenneCompetences()
-
-suggereFormation() - retourne les compétences à améliorer
+    Constructeur
+    Getters/Setters
+    toString()
+    ajouterCompetence(String competence, int note)
+    calculerMoyenneCompetences()
+    suggereFormation() - retourne les compétences à améliorer
 
 5. Classe GestionRH (Système principal)
 Attributs :
-
-HashMap<String, Employe> employes
-
-HashMap<String, Departement> departements
-
-HashMap<String, Conge> conges
-
-HashMap<String, Evaluation> evaluations
-
-HashMap<String, ArrayList<Conge>> planningConges - par mois
-
-nomEntreprise (String)
-
-anneeFiscale (int)
+    HashMap<String, Employe> employes
+    HashMap<String, Departement> departements
+    HashMap<String, Conge> conges
+    HashMap<String, Evaluation> evaluations
+    HashMap<String, ArrayList<Conge>> planningConges - par mois
+    nomEntreprise (String)
+    anneeFiscale (int)
 
 Méthodes :
 
-Gestion Employés :
-
-embaucherEmploye(Employe e)
-
-licencierEmploye(String matricule)
-
-rechercherEmploye(String matricule)
-
-listerEmployesDepartement(String codeDept)
-
-promouvoirEmploye(String matricule, String nouveauPoste, double augmentation)
-
-calculerMasseSalariale() - total des salaires
-
-employesEnEssai() - liste des employés en période d'essai
+    Gestion Employés :
+    embaucherEmploye(Employe e)
+    licencierEmploye(String matricule)
+    rechercherEmploye(String matricule)
+    listerEmployesDepartement(String codeDept)
+    promouvoirEmploye(String matricule, String nouveauPoste, double augmentation)
+    calculerMasseSalariale() - total des salaires
+    employesEnEssai() - liste des employés en période d'essai
 
 Gestion Départements :
-
-creerDepartement(Departement d)
-
-supprimerDepartement(String code)
-
-afficherStatistiquesDepartement(String code)
-
-reaffecterEmploye(String matricule, String nouveauDept)
-
-departementSousEffectif() - liste départements avec postes vacants
+    creerDepartement(Departement d)
+    supprimerDepartement(String code)
+    afficherStatistiquesDepartement(String code)
+    reaffecterEmploye(String matricule, String nouveauDept)
+    departementSousEffectif() - liste départements avec postes vacants
 
 Gestion Congés :
-
-demanderConge(String matricule, Conge c)
-
-approuverConge(String idConge, String matriculeManager)
-
-refuserConge(String idConge, String raison)
-
-verifierDisponibilite(String matricule, LocalDate debut, LocalDate fin)
-
-congesEnCours() - liste des congés actuels
-
-calculerSoldeConges(String matricule) - jours de congés restants
+    demanderConge(String matricule, Conge c)
+    approuverConge(String idConge, String matriculeManager)
+    refuserConge(String idConge, String raison)
+    verifierDisponibilite(String matricule, LocalDate debut, LocalDate fin)
+    congesEnCours() - liste des congés actuels
+    calculerSoldeConges(String matricule) - jours de congés restants
 
 Gestion Évaluations :
-
-creerEvaluation(Evaluation e)
-
-afficherHistoriqueEvaluations(String matricule)
-
-meilleursEmployes(int nombre) - top N employés
-
-employesBesoinFormation() - employés avec note < 3
-
-statistiquesPerformance() - moyennes par département
+    creerEvaluation(Evaluation e)
+    afficherHistoriqueEvaluations(String matricule)
+    meilleursEmployes(int nombre) - top N employés
+    employesBesoinFormation() - employés avec note < 3
+    statistiquesPerformance() - moyennes par département
 
 Rapports & Statistiques :
-
-genererRapportMensuel() - embauches, départs, congés
-
-tauxTurnover() - % de départ sur l'année
-
-repartitionParPoste() - nombre d'employés par poste
-
-ageMoyen() - âge moyen des employés
-
-ancienneteMoyenne() - ancienneté moyenne
-
-budgetVsReel() - comparaison budget/salaires réels
+    genererRapportMensuel() - embauches, départs, congés
+    tauxTurnover() - % de départ sur l'année
+    repartitionParPoste() - nombre d'employés par poste
+    ageMoyen() - âge moyen des employés
+    ancienneteMoyenne() - ancienneté moyenne
+    budgetVsReel() - comparaison budget/salaires réels
 
 6. Classe MainRH
 Menu interactif :
@@ -290,31 +192,20 @@ Contraintes Techniques
 Relations complexes : Un employé appartient à un département, un département a un manager (employé)
 
 Vérifications croisées :
-
 Un manager ne peut approuver ses propres congés
-
 Un employé ne peut avoir 2 congés qui se chevauchent
-
 Vérifier le budget avant une promotion
 
 Calculs avancés :
-
 Congés : déduire les weekends et jours fériés
-
 Salaires : calculer avec ancienneté et prime
-
 Statistiques : moyennes, pourcentages, tendances
-
 Gestion du temps : Périodes d'essai, ancienneté, dates de congés
 
 Recherches multiples :
-
 Par compétence
-
 Par période
-
 Par statut
-
 Par performance
 
 Exemples de données
