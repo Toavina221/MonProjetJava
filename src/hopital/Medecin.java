@@ -1,5 +1,7 @@
 package hopital;
 
+import java.time.LocalDateTime;
+
 public class Medecin {
     //Encapsulation
     private String idMedecin;
@@ -74,7 +76,12 @@ public class Medecin {
         ;
     }
 
-    public boolean peutPrendreNouveauPatient(){
-        return disponibilite;
-    }
+    // public boolean peutPrendreNouveauPatient(String idMedecin, LocalDateTime date, int duree){
+    //     Medecin medecin = medecins.get(idMedecin);
+    //     for(RendezVous ancienrendezVous : rendezVous.values()){
+    //         if (ancienrendezVous.getMedecin) {
+                
+    //         }
+    //     }
+    // }
 }

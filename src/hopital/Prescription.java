@@ -17,7 +17,7 @@ public class Prescription {
     private LocalDate dateExpiration;
 
     //Constructeur 
-    public Prescription( String idPrescription,  Patient patient, Medecin medecin, LocalDate datePrescription, boolean renouvelable , LocalDate dateExpiration){
+    public Prescription(String idPrescription,  Patient patient, Medecin medecin, LocalDate datePrescription, boolean renouvelable , LocalDate dateExpiration, HashMap<String, String> medicaments,ArrayList<String> examens ){
         this.idPrescription = idPrescription ;
         this.patient = patient;
         this.medecin = medecin;
@@ -84,6 +84,12 @@ public class Prescription {
         medicaments.put(nom, posologie);
         System.out.println("Médicament ajouté : " + nom);
     }
+        //ajouter un medicament 
+    public void ajouterExamen(String nom){
+        examens.add(nom);
+        System.out.println("Examen ajouté : " + nom);
+    }
+
 
     //vérifie si non expirée
     public boolean estValide(){ 

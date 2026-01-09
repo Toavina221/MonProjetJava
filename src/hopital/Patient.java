@@ -17,7 +17,9 @@ public class Patient {
     private boolean estHospitalise;
     
     //Constructeur 
-    public Patient(String idPatient , String nom , String prenom , LocalDate dateNaissance , char genre , String groupeSanguin ,String assuranceMedicale , boolean estHospitalise){
+    public Patient(String idPatient , String nom , String prenom , 
+        LocalDate dateNaissance , char genre , String groupeSanguin  
+         ,String assuranceMedicale , boolean estHospitalise){
         this.idPatient = idPatient;
         this.nom = nom;
         this.prenom = prenom;
@@ -109,10 +111,4 @@ public class Patient {
     public boolean estAdulte(){
         return calculerAge() >= 18;
     }
-
-    
-
-
-
-
 }
