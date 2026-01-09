@@ -86,8 +86,4 @@ public class RendezVous {
     public void annuler(){
          setStatut("Rendez vous annulé");
     }
-
-
-
-
 }
