@@ -1,0 +1,117 @@
+# Énoncé POO Java : Système de Gestion de Bibliothèque
+
+## Contexte
+Vous êtes chargé de développer un système de gestion pour une bibliothèque municipale. La bibliothèque souhaite informatiser la gestion de ses ressources, de ses membres et des emprunts.
+
+## Description du système
+
+### 1. Ressources documentaires
+La bibliothèque possède différents types de ressources :
+- **Livres** : avec ISBN, titre, auteur(s), éditeur, année de publication, nombre de pages, genre
+- **Revues** : avec ISSN, titre, éditeur, fréquence de parution (mensuelle, trimestrielle)
+- **DVD** : avec titre, réalisateur, durée, langue, sous-titres disponibles
+- **CD audio** : avec titre, artiste/interprète, durée, nombre de pistes
+
+### 2. Membres
+Plusieurs catégories de membres :
+- **Adhérent Standard** : peut emprunter jusqu'à 3 ressources simultanément pour 3 semaines
+- **Adhérent Premium** : peut emprunter jusqu'à 5 ressources simultanément pour 4 semaines (cotisation annuelle)
+- **Étudiant** : peut emprunter jusqu'à 4 ressources simultanément pour 4 semaines (justificatif requis)
+- **Enfant** (< 12 ans) : peut emprunter jusqu'à 2 ressources simultanément pour 2 semaines (catégorie jeunesse uniquement)
+
+### 3. Emprunts
+Chaque emprunt doit enregistrer :
+- La ressource empruntée
+- Le membre emprunteur
+- La date d'emprunt
+- La date de retour prévue
+- La date de retour effective (si rendu)
+- Le statut (en cours, retourné, en retard)
+
+### 4. Gestion du personnel
+- **Bibliothécaire** : peut gérer les ressources, les membres et les emprunts
+- **Administrateur** : peut tout gérer + gérer les bibliothécaires
+
+## Fonctionnalités requises
+
+### A. Gestion des ressources
+1. Ajouter/modifier/supprimer une ressource
+2. Rechercher une ressource par :
+   - Titre/auteur
+   - ISBN/ISSN
+   - Genre/type
+   - Statut (disponible/emprunté)
+3. Consulter la disponibilité d'une ressource
+4. Gérer les exemplaires multiples d'une même ressource
+
+### B. Gestion des membres
+1. Inscrire un nouveau membre avec vérification des pièces justificatives
+2. Renouveler/annuler une adhésion
+3. Consulter l'historique des emprunts d'un membre
+4. Vérifier si un membre a des amendes en cours
+
+### C. Gestion des emprunts
+1. Enregistrer un nouvel emprunt avec vérifications :
+   - Ressource disponible
+   - Quota du membre non dépassé
+   - Aucune amende impayée
+2. Enregistrer un retour
+3. Calculer les retards et amendes (0.50€ par jour de retard)
+4. Réserver une ressource non disponible
+5. Prolonger un emprunt (une fois possible si pas de réservation)
+
+### D. Statistiques et rapports
+1. Ressources les plus populaires
+2. Taux d'occupation des ressources
+3. Membres les plus actifs
+4. Retards fréquents
+5. Revenus des amendes par période
+
+## Contraintes techniques
+
+### Règles métier
+1. Une ressource ne peut être empruntée si elle est déjà empruntée
+2. Un membre ne peut emprunter plus que son quota autorisé
+3. Un membre avec amende impayée > 10€ ne peut plus emprunter
+4. Certaines ressources sont "référence" et ne peuvent être empruntées (consultation sur place uniquement)
+5. Les enfants ne peuvent emprunter que des ressources catégorisées "jeunesse"
+6. Les DVD/CD ont une durée d'emprunt réduite (2 semaines maximum)
+
+### Gestion des dates
+- Jours de fermeture : dimanches et jours fériés
+- Les prolongations ne doivent pas tenir compte des jours de fermeture
+- Les amendes ne s'appliquent pas les jours de fermeture
+
+## Évolutions potentielles (bonus)
+1. Système de notation et avis sur les ressources
+2. Suggestions automatiques basées sur l'historique
+3. Interface web/mobile pour les membres
+4. Gestion des événements (club de lecture, séances de conte)
+5. Intégration avec d'autres bibliothèques du réseau
+
+## Livrables attendus
+- Diagramme de classes UML
+- Code source Java avec packages organisés
+- Tests unitaires (JUnit)
+- Documentation technique
+- Base de données (schéma SQL)
+
+## Technologies imposées
+- Java 11+
+- Maven ou Gradle
+- Base de données MySQL ou PostgreSQL (optionnel pour la première phase)
+- JUnit 5 pour les tests
+
+## Évaluation
+Le système sera évalué sur :
+1. **Qualité du code** : respect des principes SOLID, design patterns appropriés
+2. **Architecture** : modularité, extensibilité, séparation des responsabilités
+3. **Gestion des erreurs** : exceptions personnalisées, validation des données
+4. **Tests** : couverture, tests d'intégration
+5. **Documentation** : javadoc, README
+
+---
+
+**Durée estimée** : 2-3 semaines de développement
+
+**Complexité** : Intermédiaire à avancée (idéal pour un projet de fin de module POO)

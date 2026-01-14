@@ -1,0 +1,217 @@
+# Énoncé POO Java : Système de Gestion d'une École de Musique
+
+## Contexte
+Vous devez développer un système pour une école de musique qui propose des cours individuels et collectifs, gère les professeurs, les élèves, les instruments et organise des événements musicaux.
+
+## Description du système
+
+### 1. Personnes
+**Élèves** :
+- Informations personnelles
+- Niveau (débutant, intermédiaire, avancé, expert)
+- Instruments pratiqués avec niveau sur chaque
+- Préférences musicales (styles, compositeurs)
+- Objectifs d'apprentissage
+
+**Professeurs** :
+- Spécialités instrumentales (1 instrument principal, 2 secondaires max)
+- Styles enseignés (classique, jazz, rock, etc.)
+- Disponibilités (emploi du temps)
+- Tarifs horaires (variables selon type de cours)
+- Diplômes et certifications
+
+**Administratif** :
+- Gestion des inscriptions
+- Facturation
+- Communication avec les parents (pour mineurs)
+
+### 2. Cours
+**Cours individuels** :
+- 30, 45 ou 60 minutes
+- Hebdomadaire ou bimensuel
+- Lieu : école ou domicile élève
+- Suivi personnalisé avec objectifs
+
+**Cours collectifs** :
+- Ateliers (2-5 personnes de même niveau)
+- Orchestres/ensembles (par style ou niveau)
+- Chorale
+- Formation musicale (solfège, théorie)
+
+**Stages** :
+- Intensifs pendant les vacances
+- Masterclass avec intervenants extérieurs
+- Thématiques spécifiques
+
+### 3. Instruments
+**Catégories** :
+- Cordes (violon, guitare, piano)
+- Vents (flûte, saxophone, trompette)
+- Percussions (batterie, xylophone)
+- Numériques (synthétiseur, MAO)
+
+**Gestion du parc** :
+- Instruments de location (tarifs mensuels)
+- Instruments en prêt gratuit (bourses)
+- État (neuf, bon, à réviser, hors service)
+- Historique des réparations
+- Accessoires fournis (archets, anches, etc.)
+
+### 4. Salles et équipements
+- Salles de cours (taille, acoustique, équipement)
+- Studios de répétition
+- Auditorium (concerts)
+- Médiathèque (partitions, CDs)
+- Studio d'enregistrement
+
+## Fonctionnalités requises
+
+### A. Gestion pédagogique
+1. **Planning** :
+   - Génération automatique des emplois du temps
+   - Gestion des conflits de salles/professeurs
+   - Planning des salles de répétition
+   - Alertes de disponibilité
+
+2. **Suivi des élèves** :
+   - Carnet de notes/évaluations
+   - Objectifs trimestriels
+   - Progression par compétence
+   - Recommandations d'évolution de niveau
+
+3. **Évaluations** :
+   - Auditions trimestrielles
+   - Examens de fin de cycle
+   - Jury avec plusieurs professeurs
+   - Grilles d'évaluation standardisées
+
+### B. Gestion administrative
+1. **Inscriptions** :
+   - Dossier d'inscription complet
+   - Test de niveau (pour placement)
+   - Affectation au professeur approprié
+   - Création du planning personnalisé
+
+2. **Facturation** :
+   - Forfaits (cours + location instrument)
+   - Paiement en plusieurs fois
+   - Réductions (famille, fratrie)
+   - Remboursements (arrêt en cours d'année)
+
+3. **Communication** :
+   - Convocation aux examens
+   - Rappels de paiement
+   - Newsletters mensuelles
+   - Annonces de concerts
+
+### C. Événements musicaux
+1. **Concerts** :
+   - Organisation (dates, programmes)
+   - Inscription des participants
+   - Répétitions générales
+   - Billetterie (si public extérieur)
+
+2. **Portes ouvertes** :
+   - Démonstrations instrumentales
+   - Cours d'essai gratuits
+   - Rencontres avec professeurs
+
+3. **Compétitions internes** :
+   - Par catégorie d'âge/niveau
+   - Prix à gagner (cours gratuits, partitions)
+   - Jury de professeurs
+
+### D. Bibliothèque musicale
+1. **Partitions** :
+   - Catalogage (œuvre, compositeur, difficulté)
+   - Prêt (durée, restrictions)
+   - État de conservation
+   - Suggestions d'achats
+
+2. **Médiathèque** :
+   - CDs/DVDs pédagogiques
+   - Livres théoriques
+   - Accès aux ressources numériques
+
+## Contraintes techniques
+
+### Règles métier
+1. Un professeur ne peut enseigner que ses spécialités
+2. Un élève mineur doit avoir un responsable légal enregistré
+3. Cours annulés < 24h à l'avance = facturés
+4. Location d'instrument : caution + assurance obligatoire
+5. Pour les ensembles : niveau homogène requis
+6. Maximum 8 élèves par cours collectif
+
+### Logique pédagogique
+- **Progression** : validation de compétences pour passer au niveau supérieur
+- **Recommandations** : algorithme de suggestion d'instruments secondaires
+- **Compatibilités** : certains instruments nécessitent un solfège minimum
+
+### Gestion des absences
+- Professeur absent → cours reporté ou remplacé
+- Élève absent → pas de remboursement sauf certificat médical
+- Cumul de 3 absences non justifiées → avertissement
+
+## Évolutions potentielles (bonus)
+1. **Plateforme en ligne** :
+   - Cours à distance (visio)
+   - Envoi de devoirs/enregistrements
+   - Correction numérique de partitions
+
+2. **Application mobile élève** :
+   - Métronome/tuner intégré
+   - Planning des cours
+   - Accès aux ressources pédagogiques
+   - Enregistrement des pratiques
+
+3. **Système de parrainage** :
+   - Élèves avancés aident les débutants
+   - Crédits de cours en contrepartie
+
+4. **Gestion des événements externes** :
+   - Participation à des concours
+   - Sorties à des concerts professionnels
+   - Stages avec musiciens professionnels
+
+## Données de test à prévoir
+- 15 professeurs avec spécialités variées
+- 100 élèves de tous âges et niveaux
+- 50 instruments de location
+- 10 types de cours différents
+- 5 événements annuels
+
+## Technologies imposées
+- Java 17+
+- Framework de persistance (JPA/Hibernate)
+- Base de données relationnelle
+- JUnit 5
+- Logging (SLF4J/Logback)
+- Génération de PDF (pour les partitions/contrats)
+
+## Livrables attendus
+- Diagramme de classes complet avec héritages
+- Diagramme de séquences pour les processus complexes
+- Code avec design patterns appropriés
+- Base de données normalisée
+- Scripts de peuplement de données
+- Tests unitaires et d'intégration
+
+## Points d'évaluation spécifiques
+1. **Modélisation des relations** : élève-cours-professeur-instrument
+2. **Gestion du temps** : planning, durée des cours, fréquences
+3. **Polymorphisme** : différents types de cours, instruments, évaluations
+4. **Collections avancées** : gestion des groupes, ensembles
+5. **Exceptions métier** : conflits de planning, capacités maximales
+
+**Design patterns recommandés** :
+- Composite pour les cours (individuel/collectif)
+- Strategy pour les méthodes de paiement
+- Observer pour les notifications
+- Factory pour la création d'instruments
+
+---
+
+**Durée estimée** : 4 semaines  
+**Complexité** : Élevée (projet de fin d'année)  
+**Groupe** : 3-4 personnes idéal

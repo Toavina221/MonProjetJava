@@ -1,0 +1,131 @@
+ Voici **un autre énoncé de projet**, différent du précédent, **bien détaillé**, et **uniquement l’énoncé** 👇
+
+---
+
+## 📌 Projet : Système de Gestion des Examens Universitaires
+
+### 🎯 Objectif du projet
+
+Concevoir et développer une application permettant de gérer l’**organisation des examens** dans une université : étudiants, matières, enseignants, sessions d’examen et notes.
+
+---
+
+## 🧩 Contexte
+
+L’université organise chaque semestre plusieurs examens pour différentes matières.
+Chaque étudiant peut être inscrit à plusieurs matières, et chaque matière peut avoir plusieurs sessions d’examen (normal, rattrapage).
+
+---
+
+## 📂 Fonctionnalités attendues
+
+### 1️⃣ Gestion des étudiants
+
+Chaque étudiant est caractérisé par :
+
+* Numéro étudiant unique
+* Nom et prénom
+* Date de naissance
+* Filière
+* Année d’étude
+* Liste des matières inscrites
+
+**Règles :**
+
+* Un étudiant doit être inscrit à une matière pour pouvoir passer son examen
+* Un étudiant ne peut pas être inscrit deux fois à la même matière
+
+---
+
+### 2️⃣ Gestion des enseignants
+
+Chaque enseignant possède :
+
+* Identifiant unique
+* Nom et spécialité
+* Liste des matières enseignées
+
+**Règles :**
+
+* Une matière doit avoir au moins un enseignant responsable
+* Un enseignant ne peut pas être responsable de deux examens au même moment
+
+---
+
+### 3️⃣ Gestion des matières
+
+Une matière est définie par :
+
+* Code matière unique
+* Intitulé
+* Coefficient
+* Nombre de crédits (ECTS)
+* Enseignant responsable
+
+---
+
+### 4️⃣ Gestion des sessions d’examen
+
+Une session d’examen contient :
+
+* Identifiant unique
+* Matière concernée
+* Type de session (Normal / Rattrapage)
+* Date et heure
+* Durée
+* Salle
+
+**Règles :**
+
+* Deux examens ne peuvent pas avoir lieu dans la même salle au même moment
+* Une session de rattrapage n’est accessible qu’aux étudiants ayant une note < 10
+
+---
+
+### 5️⃣ Gestion des notes
+
+Une note est caractérisée par :
+
+* Étudiant
+* Session d’examen
+* Valeur de la note (0 à 20)
+* Date de saisie
+
+**Règles métier :**
+
+* Une seule note par étudiant et par session
+* Une note ne peut être saisie qu’après la tenue de l’examen
+* La moyenne semestrielle doit prendre en compte les coefficients
+
+---
+
+## ⚙️ Contraintes techniques
+
+* Programmation orientée objet (Java)
+* Utilisation de `LocalDate` et `LocalDateTime`
+* Validation des données
+* Gestion des exceptions personnalisées
+* Respect des principes SOLID
+
+---
+
+## 🧪 Cas de test attendus
+
+* Inscription invalide à une matière
+* Conflit de salle
+* Saisie de note avant la date de l’examen
+* Accès non autorisé à une session de rattrapage
+* Calcul correct de la moyenne
+
+---
+
+## 🏁 Livrables
+
+* Diagramme de classes UML
+* Code source documenté
+* Jeu de tests unitaires
+* Rapport explicatif
+
+---
+
+Si tu veux encore **un autre thème** (banque, hôpital, e-commerce, transport, bibliothèque…), dis-le 👌

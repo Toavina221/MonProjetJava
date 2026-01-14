@@ -1,0 +1,142 @@
+Très bien 👍
+Voici **un autre énoncé**, thème **e-commerce**, **bien détaillé**, **uniquement l’énoncé** 👇
+
+---
+
+## 📌 Projet : Système de Gestion d’une Plateforme E-Commerce
+
+### 🎯 Objectif du projet
+
+Concevoir une application permettant de gérer une **plateforme de vente en ligne** : clients, produits, commandes, paiements et livraisons, en respectant des règles métier précises.
+
+---
+
+## 🧩 Contexte
+
+La plateforme permet à des clients de consulter des produits, de passer des commandes et de suivre leur livraison.
+Chaque commande peut contenir plusieurs produits et doit être payée avant d’être expédiée.
+
+---
+
+## 📂 Fonctionnalités attendues
+
+### 1️⃣ Gestion des clients
+
+Chaque client est caractérisé par :
+
+* Identifiant unique
+* Nom et prénom
+* Email
+* Adresse de livraison
+* Historique des commandes
+
+**Règles :**
+
+* L’email doit être unique
+* Un client peut passer plusieurs commandes
+
+---
+
+### 2️⃣ Gestion des produits
+
+Un produit est défini par :
+
+* Référence unique
+* Nom
+* Description
+* Prix unitaire
+* Quantité en stock
+* Catégorie
+
+**Règles :**
+
+* Un produit ne peut être commandé que s’il est en stock
+* Le stock doit être mis à jour après chaque commande validée
+
+---
+
+### 3️⃣ Gestion des commandes
+
+Une commande contient :
+
+* Numéro de commande unique
+* Date de commande
+* Client concerné
+* Liste des produits commandés (avec quantités)
+* Montant total
+* Statut (en attente, payée, expédiée, livrée, annulée)
+
+**Règles :**
+
+* Une commande doit contenir au moins un produit
+* Une commande annulée ne peut pas être expédiée
+* Le montant total est calculé automatiquement
+
+---
+
+### 4️⃣ Gestion des paiements
+
+Un paiement est caractérisé par :
+
+* Identifiant unique
+* Commande associée
+* Montant payé
+* Mode de paiement (carte, virement, paiement en ligne)
+* Date de paiement
+* Statut (accepté, refusé)
+
+**Règles métier :**
+
+* Une commande ne peut être payée qu’une seule fois
+* Le montant payé doit être égal au montant total de la commande
+* Un paiement refusé n’entraîne pas la validation de la commande
+
+---
+
+### 5️⃣ Gestion des livraisons
+
+Une livraison contient :
+
+* Identifiant unique
+* Commande associée
+* Date d’expédition
+* Date de livraison estimée
+* Statut (en préparation, en cours, livrée)
+
+**Règles :**
+
+* Une livraison ne peut être créée que pour une commande payée
+* Une commande livrée ne peut plus être modifiée
+
+---
+
+## ⚙️ Contraintes techniques
+
+* Programmation orientée objet (Java)
+* Utilisation de `LocalDate` et `LocalDateTime`
+* Respect de l’encapsulation
+* Gestion des exceptions métier
+* Séparation logique des responsabilités
+
+---
+
+## 🧪 Cas de test attendus
+
+* Commande avec produit hors stock
+* Paiement d’un montant incorrect
+* Annulation d’une commande déjà expédiée
+* Mise à jour correcte du stock
+* Cycle complet : commande → paiement → livraison
+
+---
+
+## 🏁 Livrables
+
+* Diagramme de classes UML
+* Code source documenté
+* Tests unitaires
+* Rapport explicatif
+
+---
+
+Si tu veux **encore une autre** (banque, transport, bibliothèque, école, assurance…), dis juste le thème 👌

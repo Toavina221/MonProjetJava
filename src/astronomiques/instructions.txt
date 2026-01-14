@@ -1,0 +1,270 @@
+# Énoncé POO Java : Système de Gestion d'un Observatoire Astronomique
+
+## Contexte
+Vous devez développer un système pour un observatoire astronomique professionnel qui gère plusieurs télescopes, coordonne des projets de recherche internationaux et organise des activités de médiation scientifique.
+
+## Description du système
+
+### 1. Instruments d'observation
+**Télescopes optiques** :
+- Réflecteurs (miroirs primaires de 1m à 8m)
+- Réfracteurs (pour observations spécifiques)
+- Solaires (avec filtres H-alpha)
+- Robotisés (observations automatisées)
+
+**Instruments spécialisés** :
+- Spectrographes (basse/haute résolution)
+- Imageurs CCD et CMOS
+- Photomètres
+- Interféromètres
+
+**Détecteurs** :
+- Caméras scientifiques (quantum efficiency, bruit)
+- Récepteurs radio
+- Détecteurs infrarouges
+- Instruments multi-objets
+
+### 2. Personnel scientifique
+**Chercheurs** :
+- Astronomes permanents
+- Post-doctorants
+- Doctorants
+- Chercheurs invités
+
+**Spécialités** :
+- Planétologie
+- Astrophysique stellaire
+- Cosmologie
+- Exoplanètes
+- Milieu interstellaire
+
+**Ingénieurs** :
+- Optique et mécanique
+- Électronique et détecteurs
+- Informatique et traitement de données
+- Instrumentation
+
+### 3. Programmes d'observation
+**Temps d'observation** :
+- Comités d'attribution (peer review)
+- Programmes nationaux/internationaux
+- Temps garanti (pour financeurs)
+- Temps de service (observations standardisées)
+
+**Types de programmes** :
+- Grands relevés (surveys)
+- Suivis temporels
+- Observations ciblées
+- Programmes d'opportunité (événements rares)
+
+**Projets collaboratifs** :
+- Réseaux de télescopes
+- Missions spatiales
+- Consortia internationaux
+- Partenariats industriels
+
+### 4. Données scientifiques
+**Acquisition** :
+- Images (FITS format)
+- Spectres
+- Courbes de lumière
+- Données photométriques
+
+**Traitement** :
+- Réduction de données (bias, dark, flat)
+- Calibration (astrométrique, photométrique)
+- Analyse (fitting, modélisation)
+- Archivage et métadonnées
+
+**Publications** :
+- Articles scientifiques
+- Conférences
+- Bases de données publiques
+- Rapports techniques
+
+## Fonctionnalités requises
+
+### A. Gestion des instruments
+1. **Maintenance** :
+   - Calendrier des maintenances
+   - Interventions techniques
+   - Tests de performance
+   - Journal de bord des instruments
+
+2. **Configuration** :
+   - Combinaisons instrumentales
+   - Modes d'observation
+   - Temps de setup
+   - Compatibilités techniques
+
+3. **Performance** :
+   - Courbes d'efficacité
+   - Limites de détection
+   - Résolution spectrale/spatiale
+   - Historique des pannes
+
+### B. Planification des observations
+1. **Demandes de temps** :
+   - Soumission électronique
+   - Évaluation scientifique
+   - Notation par les pairs
+   - Attribution du temps
+
+2. **Planning** :
+   - Conditions météo requises
+   - Contraintes lunaires
+   - Visibilité des cibles
+   - Optimisation du temps télescope
+
+3. **Exécution** :
+   - Scripts d'observation
+   - Surveillance en temps réel
+   - Adaptation aux conditions
+   - Backup programs
+
+### C. Gestion des données
+1. **Pipeline de traitement** :
+   - Chaîne de réduction automatique
+   - Contrôle qualité
+   - Calibration standard
+   - Production de catalogues
+
+2. **Archivage** :
+   - Base de données d'observations
+   - Métadonnées complètes
+   - Accès aux données brutes/traîtées
+   - Politique d'embargo
+
+3. **Distribution** :
+   - Portail de données
+   - API d'accès
+   - Formats standards (FITS, VOTable)
+   - Services VO (Virtual Observatory)
+
+### D. Recherche et collaboration
+1. **Projets scientifiques** :
+   - Gestion des collaborations
+   - Partage des données
+   - Publications conjointes
+   - Demandes de financement
+
+2. **Formation** :
+   - Stages étudiants
+   - Écoles de recherche
+   - Visites techniques
+   - Documentation utilisateur
+
+3. **Médiation** :
+   - Observations grand public
+   - Conférences
+   - Visites scolaires
+   - Programmes éducatifs
+
+## Contraintes techniques
+
+### Règles métier
+1. **Temps d'observation** :
+   - Attribution semestrielle
+   - Priorité aux financeurs
+   - Pénalités pour non-utilisation
+   - Reports pour mauvaise météo
+
+2. **Qualité des données** :
+   - Standards de calibration
+   - Documentation obligatoire
+   - Procédures de vérification
+   - Traçabilité complète
+
+3. **Sécurité** :
+   - Accès restreint aux instruments
+   - Protocoles de sécurité
+   - Sauvegardes régulières
+   - Protection des données personnelles
+
+### Conditions d'observation
+- Seeing (turbulence atmosphérique)
+- Couverture nuageuse
+- Humidité et vent
+- Pollution lumineuse
+- Phase lunaire
+
+### Calendrier astronomique
+- Nuits astronomiques (soleil < -18°)
+- Heures crépusculaires
+- Saisons d'observation
+- Éphémérides des objets
+
+## Évolutions potentielles (bonus)
+1. **Système d'alerte automatique** :
+   - Événements transitoires (sursauts gamma, supernovae)
+   - Suivi rapide
+   - Notifications aux chercheurs
+   - Réorientation automatique
+
+2. **Planification intelligente** :
+   - Algorithmes d'optimisation
+   - Prédictions météo
+   - Gestion dynamique
+   - Apprentissage automatique
+
+3. **Télescope virtuel** :
+   - Combinaison de données multi-sites
+   - Interférométrie virtuelle
+   - Archives hétérogènes
+   - Méga-relevés
+
+4. **Simulations** :
+   - Outils de planification
+   - Estimation des temps d'exposition
+   - Simulation de détection
+   - Tests d'hypothèses
+
+## Données de test à prévoir
+- 5 télescopes avec caractéristiques différentes
+- 50 instruments spécialisés
+- 200 chercheurs actifs
+- 1000 demandes de temps par an
+- 1 To de données simulées
+
+## Technologies imposées
+- Java 17+ (calculs numériques intensifs)
+- Base de données (PostgreSQL avec PostGIS)
+- Framework de calcul scientifique
+- API REST avec authentification
+- Système de fichiers distribués
+- Librairies astronomiques (JSKY, Astropy via Jython)
+
+## Livrables attendus
+- Modèle de données complet
+- Diagrammes UML (classes, séquences, activités)
+- Architecture microservices
+- Tests de performance
+- Documentation technique et utilisateur
+- Démonstration avec données réelles
+
+## Points d'évaluation spécifiques
+1. **Gestion du temps** : planning complexe, contraintes multiples
+2. **Calculs scientifiques** : éphémérides, conditions d'observation
+3. **Héritage complexe** : différents types d'instruments, programmes
+4. **Big Data** : gestion de volumes importants de données
+5. **Système temps réel** : alertes, adaptations dynamiques
+
+**Design patterns recommandés** :
+- Strategy pour les modes d'observation
+- Observer pour les alertes et notifications
+- Composite pour les programmes d'observation
+- Factory pour les instruments et détecteurs
+- Command pour les séquences d'observation
+
+**Algorithmes à implémenter** :
+- Calcul de visibilité des cibles
+- Optimisation de séquences d'observation
+- Réduction de données standard
+- Calibration photométrique
+
+---
+
+**Durée estimée** : 8-10 semaines  
+**Complexité** : Expert++ (recherche & développement)  
+**Équipe** : 6-8 personnes multidisciplinaires  
+**Prérequis** : Bases d'astronomie, mathématiques avancées

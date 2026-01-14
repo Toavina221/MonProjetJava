@@ -1,0 +1,258 @@
+# Énoncé POO Java : Système de Gestion d'une Compagnie de Théâtre
+
+## Contexte
+Vous devez développer un système pour une compagnie de théâtre professionnelle qui produit plusieurs spectacles par an, gère une troupe d'artistes et technique, et organise des tournées nationales et internationales.
+
+## Description du système
+
+### 1. Productions artistiques
+**Spectacles** :
+- Pièces de théâtre (classique, contemporain, création)
+- Comédies musicales
+- Théâtre de rue
+- Jeunesse et scolaire
+- Lecture-spectacle
+
+**Éléments d'un spectacle** :
+- Texte (auteur, droits d'auteur)
+- Mise en scène
+- Scénographie (décors, costumes, accessoires)
+- Éclairages et son
+- Musique originale
+
+### 2. Personnel artistique
+**Comédiens** :
+- Profil (drame, comédie, chant, danse)
+- Rôles tenus
+- Disponibilités (répétitions, représentations)
+- Cachets (variable selon rôle, expérience)
+
+**Équipe de création** :
+- Metteur en scène
+- Scénographe
+- Costumier
+- Éclairagiste
+- Compositeur
+
+**Direction artistique** :
+- Directeur artistique
+- Programmateur
+- Chargé de production
+
+### 3. Personnel technique
+**Régie** :
+- Régisseur général
+- Régisseur son
+- Régisseur lumière
+- Régisseur plateau
+
+**Construction** :
+- Constructeur décors
+- Accessoiriste
+- Costumier (fabrication)
+- Perruquier-maquilleur
+
+**Administratif** :
+- Directeur de production
+- Chargé de diffusion
+- Chargé de communication
+- Administrateur
+
+### 4. Lieux et tournées
+**Théâtres** :
+- Salles fixes (capacité, configuration)
+- Théâtres partenaires
+- Résidences de création
+- Lieux atypiques
+
+**Tournées** :
+- Dates et lieux
+- Logistique (transport, hébergement)
+- Contrats avec les diffuseurs
+- Jauge et billetterie
+
+**Festivals** :
+- Soumission des dossiers
+- Sélection et programmation
+- Conditions spécifiques
+
+## Fonctionnalités requises
+
+### A. Gestion des productions
+1. **Pré-production** :
+   - Calendrier de création
+   - Budget prévisionnel
+   - Casting (auditions, choix des comédiens)
+   - Planification des répétitions
+
+2. **Production** :
+   - Suivi des répétitions (présences, notes)
+   - Construction des décors (avancement)
+   - Fabrication des costumes
+   - Création des éclairages et sons
+
+3. **Post-production** :
+   - Archivage (photos, vidéos, critiques)
+   - Évaluation artistique
+   - Bilan financier
+   - Maintenance du matériel
+
+### B. Gestion des représentations
+1. **Planning** :
+   - Calendrier des représentations
+   - Disponibilité des artistes (congés, autres projets)
+   - Réservation des salles
+   - Planning technique (montage, démontage)
+
+2. **Billetterie** :
+   - Tarification (plein tarif, réduit, groupes)
+   - Vente en ligne et sur place
+   - Abonnements
+   - Invitations (presse, partenaires)
+
+3. **Régie de spectacle** :
+   - Feuille de régie (conducteur)
+   - Présences artistiques et techniques
+   - Incidents et reports
+   - Rapports de représentation
+
+### C. Gestion des ressources humaines
+1. **Contrats** :
+   - CDD spectacle
+   - Intermittents du spectacle
+   - Bénéficiaires de l'Assedic
+   - Vacataires
+
+2. **Planning** :
+   - Heures de répétition
+   - Heures de représentation
+   - Heures supplémentaires
+   - Congés et absences
+
+3. **Rémunérations** :
+   - Cachets artistiques
+   - Salaires techniques
+   - Frais (déplacement, per diem)
+   - Charges sociales
+
+### D. Gestion administrative et financière
+1. **Budget** :
+   - Budget de production
+   - Budget de diffusion
+   - Subventions (DRAC, région, ville)
+   - Mécénat et partenariats
+
+2. **Droits** :
+   - Droits d'auteur (SACD)
+   - Droits voisins
+   - Droits de reproduction
+   - Contrats de cession
+
+3. **Communication** :
+   - Dossier de presse
+   - Programme du spectacle
+   - Relations publiques
+   - Réseaux sociaux
+
+## Contraintes techniques
+
+### Règles métier
+1. **Réglementation spectacle vivant** :
+   - Code du travail spectacle
+   - Convention collective
+   - Statut intermittent
+   - Sécurité (ERP, pyrotechnie)
+
+2. **Droits d'auteur** :
+   - Pourcentage recettes
+   - Minimum garanti
+   - Territoire de cession
+   - Durée de validité
+
+3. **Production** :
+   - Délais minimum (répétitions selon durée spectacle)
+   - Équipe technique minimum par représentation
+   - Normes sécurité décors
+   - Contrôles techniques réguliers
+
+### Logistique
+- Transport décors (camion, volumes)
+- Montage/démontage (temps, personnel)
+- Hébergement en tournée
+- Restauration (cantines)
+
+### Saisonnalité
+- Saison théâtrale (septembre à juin)
+- Festivals d'été
+- Reprises de spectacles
+- Créations estivales
+
+## Évolutions potentielles (bonus)
+1. **Système de réservation intelligent** :
+   - Placement automatique
+   - Gestion des groupes
+   - Suggestions de places
+   - Alertes de dernière minute
+
+2. **Application mobile spectacle** :
+   - Billets électroniques
+   - Programme interactif
+   - Sous-titrage en direct
+   - Sondages satisfaction
+
+3. **Gestion des répétitions** :
+   - Partage des notes de mise en scène
+   - Enregistrements des répétitions
+   - Annotation des partitions
+   - Planning des salles de répétition
+
+4. **Archivage numérique** :
+   - Base de données des spectacles
+   - Médiathèque (photos, vidéos, sons)
+   - Documentation technique
+   - Fiches artistiques
+
+## Données de test à prévoir
+- 5 spectacles en répertoire
+- 30 artistes (comédiens, techniciens)
+- 50 représentations par an
+- 10 lieux de diffusion
+- 1 an de planning
+
+## Technologies imposées
+- Java 17+
+- Spring Framework
+- Base de données (MySQL/PostgreSQL)
+- JUnit 5 et Mockito
+- API REST
+- Framework de reporting
+
+## Livrables attendus
+- Diagramme de classes détaillé
+- Diagrammes de séquence des cas complexes
+- Modèle de données physique
+- Code source commenté
+- Tests automatisés
+- Manuel d'utilisation
+- Présentation du projet
+
+## Points d'évaluation spécifiques
+1. **Gestion des relations complexes** : spectacle ↔ artiste ↔ représentation
+2. **Gestion du temps** : planning, durées, chevauchements
+3. **Héritage** : différents types de personnel, contrats
+4. **Collections** : distributions, tournées, programmations
+5. **Calculs métier** : cachets, droits d'auteur, billetterie
+
+**Design patterns recommandés** :
+- Composite pour les équipes artistiques
+- Observer pour les notifications (annulations, changements)
+- Strategy pour les méthodes de vente (billetterie)
+- Factory pour la création de spectacles
+- State pour le cycle de vie d'un spectacle
+
+---
+
+**Durée estimée** : 6-8 semaines  
+**Complexité** : Expert (projet professionnel)  
+**Équipe** : 5-6 personnes idéal  
+**Prérequis** : Connaissance du milieu du spectacle vivant

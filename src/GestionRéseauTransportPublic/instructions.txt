@@ -1,0 +1,150 @@
+Parfait 👍
+Voici **un énoncé de projet**, thème **transport**, **bien détaillé**, **uniquement l’énoncé** 👇
+
+---
+
+## 📌 Projet : Système de Gestion d’un Réseau de Transport Public
+
+### 🎯 Objectif du projet
+
+Développer une application permettant de gérer un **réseau de transport public** (bus, tramway ou métro) : lignes, véhicules, arrêts, trajets, conducteurs et titres de transport.
+
+---
+
+## 🧩 Contexte
+
+La société de transport exploite plusieurs lignes composées d’arrêts successifs.
+Les usagers utilisent des **titres de transport** pour voyager sur le réseau, et les véhicules sont affectés à des trajets planifiés.
+
+---
+
+## 📂 Fonctionnalités attendues
+
+### 1️⃣ Gestion des lignes
+
+Une ligne est définie par :
+
+* Code ligne unique
+* Nom de la ligne
+* Type de transport (bus, tram, métro)
+* Liste ordonnée des arrêts
+
+**Règles :**
+
+* Une ligne doit contenir au moins deux arrêts
+* L’ordre des arrêts ne peut pas être modifié pendant un trajet en cours
+
+---
+
+### 2️⃣ Gestion des arrêts
+
+Un arrêt est caractérisé par :
+
+* Identifiant unique
+* Nom
+* Zone tarifaire
+
+**Règles :**
+
+* Un arrêt peut appartenir à plusieurs lignes
+* Deux arrêts d’une même ligne ne peuvent pas avoir le même nom
+
+---
+
+### 3️⃣ Gestion des véhicules
+
+Un véhicule contient :
+
+* Numéro unique
+* Type de véhicule
+* Capacité maximale
+* Statut (en service, en maintenance)
+
+**Règles :**
+
+* Un véhicule en maintenance ne peut pas être affecté à un trajet
+* Un véhicule ne peut assurer qu’un seul trajet à la fois
+
+---
+
+### 4️⃣ Gestion des conducteurs
+
+Chaque conducteur possède :
+
+* Matricule unique
+* Nom et prénom
+* Permis correspondant au type de véhicule
+* Planning de travail
+
+**Règles :**
+
+* Un conducteur ne peut conduire qu’un véhicule compatible avec son permis
+* Un conducteur ne peut pas assurer deux trajets simultanément
+
+---
+
+### 5️⃣ Gestion des trajets
+
+Un trajet est défini par :
+
+* Identifiant unique
+* Ligne concernée
+* Véhicule affecté
+* Conducteur affecté
+* Date et heure de départ
+* Date et heure d’arrivée prévues
+
+**Règles métier :**
+
+* Un trajet ne peut être créé que si le véhicule et le conducteur sont disponibles
+* Un trajet passé ne peut plus être modifié
+* Les horaires doivent respecter l’ordre des arrêts
+
+---
+
+### 6️⃣ Gestion des titres de transport
+
+Un titre de transport contient :
+
+* Identifiant unique
+* Type (ticket unitaire, abonnement)
+* Zone(s) de validité
+* Date de début et date de fin de validité
+
+**Règles :**
+
+* Un titre n’est valide que pendant sa période de validité
+* Un abonnement ne peut être utilisé que par un seul usager
+
+---
+
+## ⚙️ Contraintes techniques
+
+* Programmation orientée objet (Java)
+* Utilisation de `LocalDate` et `LocalDateTime`
+* Encapsulation et relations entre classes
+* Gestion des exceptions métier
+* Respect des règles métier
+
+---
+
+## 🧪 Cas de test attendus
+
+* Affectation d’un véhicule en maintenance
+* Conflit de planning conducteur
+* Création d’une ligne avec un seul arrêt
+* Utilisation d’un titre expiré
+* Création correcte d’un trajet
+
+---
+
+## 🏁 Livrables
+
+* Diagramme de classes UML
+* Code source documenté
+* Tests unitaires
+* Rapport explicatif
+
+---
+
+Si tu veux encore **un autre domaine** ou une **version plus simple / plus avancée**, dis-le 👍

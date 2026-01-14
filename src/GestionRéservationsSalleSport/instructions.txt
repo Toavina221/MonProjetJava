@@ -1,0 +1,125 @@
+Voici un **nouvel énoncé de projet**, bien détaillé, **sans code**, adapté à un niveau **Java / POO / bases de données** 👇
+
+---
+
+## 📌 Projet : Gestion des Réservations d’une Salle de Sport
+
+### 🎯 Objectif du projet
+
+Développer une application permettant de gérer les **réservations de séances sportives** dans une salle de sport.
+Le système devra gérer les **adhérents**, les **séances**, les **coach**, et les **réservations**, tout en respectant des règles métier précises.
+
+---
+
+## 🧩 Contexte
+
+Une salle de sport propose plusieurs types de séances (musculation, yoga, cardio, crossfit, etc.) animées par des coachs.
+Les adhérents peuvent réserver des séances à condition qu’il reste des places disponibles et que leur abonnement soit valide.
+
+---
+
+## 📂 Fonctionnalités attendues
+
+### 1️⃣ Gestion des adhérents
+
+Chaque adhérent est caractérisé par :
+
+* Un identifiant unique
+* Nom et prénom
+* Date de naissance
+* Type d’abonnement (Mensuel, Trimestriel, Annuel)
+* Date de début et date de fin d’abonnement
+* Statut (actif / suspendu)
+
+**Règles :**
+
+* Un adhérent ne peut réserver une séance que si son abonnement est **actif et valide**
+* Un abonnement est valide si la date actuelle est comprise entre la date de début et de fin
+
+---
+
+### 2️⃣ Gestion des coachs
+
+Chaque coach possède :
+
+* Un identifiant unique
+* Nom et spécialité
+* Liste des séances qu’il anime
+
+**Règles :**
+
+* Un coach ne peut pas animer deux séances en même temps
+* Une séance doit obligatoirement avoir un coach
+
+---
+
+### 3️⃣ Gestion des séances
+
+Une séance est définie par :
+
+* Un identifiant unique
+* Type de séance
+* Date et heure de début
+* Durée
+* Capacité maximale
+* Coach responsable
+
+**Règles :**
+
+* Le nombre de réservations ne doit jamais dépasser la capacité maximale
+* Une séance passée ne peut plus être réservée
+
+---
+
+### 4️⃣ Gestion des réservations
+
+Une réservation contient :
+
+* Un identifiant unique
+* Date de réservation
+* Adhérent concerné
+* Séance réservée
+
+**Règles métier :**
+
+* Un adhérent ne peut réserver **qu’une seule fois la même séance**
+* Une réservation est refusée si la séance est complète
+* Une réservation est refusée si l’abonnement de l’adhérent est invalide
+
+---
+
+## ⚙️ Contraintes techniques
+
+* Programmation orientée objet (Java)
+* Utilisation de `LocalDate` et `LocalDateTime`
+* Respect de l’encapsulation
+* Séparation claire des responsabilités (modèle / logique métier)
+* Gestion des exceptions métier
+
+---
+
+## 🧪 Cas de test attendus
+
+* Réservation avec abonnement expiré
+* Réservation d’une séance complète
+* Réservation d’une séance déjà passée
+* Réservation valide
+* Tentative de double réservation
+
+---
+
+## 🏁 Livrables
+
+* Diagramme de classes UML
+* Code source documenté
+* Jeu de tests
+* Rapport expliquant les choix techniques
+
+---
+
+Si tu veux, je peux :
+
+* te donner un **projet plus difficile** 🔥
+* adapter l’énoncé à un **examen**
+* le transformer en **mini-projet étudiant**
+* ou créer un projet orienté **Spring / JPA**

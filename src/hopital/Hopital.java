@@ -348,7 +348,6 @@ public class Hopital {
         System.out.println(patients.size() + " patients ");
         return patients.size();
     }
-
     // calculer le nombre des medecins par specialite 
     public Map<String, Integer> nombreMedecinParSpecialite(){
         Map<String, Integer> liste = new HashMap<>(); 
@@ -369,7 +368,6 @@ public class Hopital {
         }
         return liste;
     }
-
     // Trouver la spécialité la plus demandée 
     public  String specialiteLaPlusDemandee(){
         if(rendezVous.isEmpty()){
@@ -377,7 +375,6 @@ public class Hopital {
             return null;
         }
         Map<String, Integer> liste = new HashMap<>();
-
         for(RendezVous rdv :  rendezVous.values()){
             String specialite = rdv.getMedecin().getSpecialite();
             if(liste.containsKey(specialite)){
@@ -391,5 +388,4 @@ public class Hopital {
         Map.Entry<String, Integer> laPlusDemandee = Collections.max(liste.entrySet(),Map.Entry.comparingByValue());
         return laPlusDemandee.getKey();
     }
-    
 }

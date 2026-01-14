@@ -1,0 +1,254 @@
+# Énoncé POO Java : Système de Gestion d'une Ferme Agricole Biologique
+
+## Contexte
+Vous devez développer un système pour une ferme biologique qui pratique la polyculture-élevage. La ferme vend ses produits via une AMAP (Association pour le Maintien d'une Agriculture Paysanne) et directement à la ferme.
+
+## Description du système
+
+### 1. Productions végétales
+**Cultures maraîchères** :
+- Légumes (tomates, carottes, salades, etc.)
+- Fruits (fraises, pommes, etc.)
+- Aromatiques (basilic, thym, etc.)
+
+**Grandes cultures** :
+- Céréales (blé, maïs)
+- Légumineuses (lentilles, pois)
+- Fourrages (pour les animaux)
+
+**Serres et tunnels** :
+- Cultures hors saison
+- Plants et semis
+- Contrôle climatique
+
+### 2. Productions animales
+**Volailles** :
+- Poules pondeuses (œufs)
+- Poulets de chair
+- Canards, oies
+- Conditions d'élevage (plein air, bio)
+
+**Ruminants** :
+- Vaches laitières (lait, fromage)
+- Bovins à viande
+- Chèvres (lait, fromage)
+- Brebis (lait, agneaux)
+
+**Autres** :
+- Abeilles (miel, pollen)
+- Porcs (en plein air)
+- Lapins
+
+### 3. Parcelles et infrastructures
+**Terres cultivées** :
+- Parcelles identifiées (superficie, type de sol)
+- Rotation des cultures (plan sur 5 ans)
+- Historique des cultures (engrais verts, amendements)
+
+**Bâtiments** :
+- Granges et hangars
+- Étable et poulaillers
+- Serres et tunnels
+- Local de transformation (fromagerie, conserverie)
+
+**Équipements** :
+- Tracteurs et outils
+- Système d'irrigation
+- Clôtures électriques
+- Matériel de transformation
+
+### 4. Clients et distribution
+**AMAP** :
+- Contrats annuels avec consommateurs
+- Paniers hebdomadaires
+- Engagement sur la saison
+
+**Vente directe** :
+- Boutique à la ferme
+- Marchés locaux
+- Commandes en ligne
+
+**Restauration** :
+- Restaurants locaux
+- Cantines scolaires
+- Magasins bio
+
+## Fonctionnalités requises
+
+### A. Gestion des cultures
+1. **Planification** :
+   - Calendrier cultural (semis, plantation, récolte)
+   - Rotation des cultures (familles botaniques)
+   - Associations bénéfiques (compagnonnage)
+   - Succession culturales
+
+2. **Suivi cultural** :
+   - Stades phénologiques
+   - Traitements (uniquement autorisés en bio)
+   - Arrosage (quantité, fréquence)
+   - Observations (maladies, ravageurs)
+
+3. **Récoltes** :
+   - Quantités récoltées par parcelle
+   - Calibre et qualité
+   - Pertes (maladies, météo)
+   - Rendements à l'hectare
+
+### B. Gestion des animaux
+1. **Troupeaux** :
+   - Identification individuelle (boucles, puces)
+   - Pedigree et généalogie
+   - Suivi sanitaire (vaccins, traitements)
+   - Performances (production laitière, ponte)
+
+2. **Alimentation** :
+   - Rationnement (fourrages, céréales)
+   - Production propre vs achat
+   - Calcul des besoins
+   - Stock fourrages (silo, foin)
+
+3. **Reproduction** :
+   - Cycles et chaleurs
+   - Saisons de reproduction
+   - Gestation et mise bas
+   - Sevrage des jeunes
+
+### C. Gestion des stocks
+1. **Produits frais** :
+   - Conservation (frigo, chambre froide)
+   - DLC (Date Limite de Consommation)
+   - Tri et calibrage
+   - Conditionnement
+
+2. **Produits transformés** :
+   - Fromages (affinage)
+   - Conserves et bocaux
+   - Surgelés
+   - Farines et céréales
+
+3. **Intrants** :
+   - Semences et plants
+   - Aliments animaux
+   - Amendements (compost, fumier)
+   - Matériel
+
+### D. Commercialisation
+1. **Contrats AMAP** :
+   - Adhérents (coordonnées, préférences)
+   - Composition des paniers (saisonnalité)
+   - Livraisons (jours, points de retrait)
+   - Paiements (chèques, virements)
+
+2. **Ventes** :
+   - Prix selon calibre et qualité
+   - Promotions (surdensités)
+   - Commandes spéciales
+   - Facturation
+
+3. **Relation clients** :
+   - Newsletters (disponibilités)
+   - Visites à la ferme
+   - Recettes et conseils
+   - Sondages de satisfaction
+
+## Contraintes techniques
+
+### Règles métier
+1. **Certification bio** :
+   - Conversion (3 ans minimum)
+   - Contrôles annuels
+   - Cahier des charges strict
+   - Traçabilité complète obligatoire
+
+2. **Bien-être animal** :
+   - Surface minimum par animal
+   - Accès au plein air obligatoire
+   - Pas d'antibiotiques préventifs
+   - Alimentation bio à 100%
+
+3. **Agroécologie** :
+   - Rotation minimum 5 ans
+   - Couverture des sols l'hiver
+   - Biodiversité (haies, bandes fleuries)
+   - Gestion de l'eau (récupération)
+
+### Saisonnalité
+- Productions variables selon saisons
+- Planification sur l'année complète
+- Stocks pour l'hiver (conserves, fourrages)
+- Travaux saisonniers (moisson, fenaison)
+
+### Traçabilité
+- Du champ à l'assiette
+- Lot de production
+- Date de récolte/abattage
+- Conditions de stockage
+
+## Évolutions potentielles (bonus)
+1. **Système d'irrigation intelligent** :
+   - Capteurs d'humidité
+   - Pilotage automatique
+   - Données météo intégrées
+   - Optimisation de l'eau
+
+2. **Application pour les AMAPiens** :
+   - Choix des paniers
+   - Échanges entre adhérents
+   - Recettes selon contenu du panier
+   - Notification des livraisons
+
+3. **Optimisation des rotations** :
+   - Algorithmes de planification
+   - Simulations de rendements
+   - Gestion des risques climatiques
+
+4. **Circuit de transformation** :
+   - Atelier de découpe
+   - Laboratoire fromager
+   - Conserverie
+   - Valorisation des sous-produits
+
+## Données de test à prévoir
+- 20 parcelles différentes
+- 10 types de cultures
+- 5 espèces animales
+- 50 animaux identifiés
+- 100 clients AMAP
+- 1 an de données climatiques
+
+## Technologies imposées
+- Java 17+
+- Base de données (PostgreSQL recommandé)
+- JPA/Hibernate
+- Framework de tests (JUnit 5, AssertJ)
+- API REST (Spring Boot optionnel)
+- Génération de rapports (JasperReports ou équivalent)
+
+## Livrables attendus
+- Diagrammes UML complets
+- Modèle de données relationnel
+- Code avec architecture en couches
+- Tests unitaires et d'intégration
+- Documentation d'installation et d'utilisation
+- Jeu de données de démonstration
+
+## Points d'évaluation spécifiques
+1. **Modélisation des cycles** : animaux, cultures, saisons
+2. **Gestion du temps** : calendriers culturaux, gestations
+3. **Héritage et polymorphisme** : différents types de productions
+4. **Collections complexes** : troupeaux, stocks, clients
+5. **Calculs métier** : rendements, rations, rentabilité
+
+**Design patterns recommandés** :
+- Observer pour les alertes (maladies, naissances)
+- Strategy pour les modes de culture
+- Composite pour les parcelles
+- Factory pour les produits
+- State pour les cycles culturaux
+
+---
+
+**Durée estimée** : 5-6 semaines  
+**Complexité** : Très élevée (projet de fin d'études)  
+**Équipe** : 4-5 personnes recommandé  
+**Note** : Ce projet implique des connaissances en agronomie de base

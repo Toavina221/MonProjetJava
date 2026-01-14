@@ -1,0 +1,158 @@
+Parfait 👍
+Voici **un énoncé de projet**, thème **école**, **bien détaillé**, **uniquement l’énoncé** 👇
+
+---
+
+## 📌 Projet : Système de Gestion d’une École
+
+### 🎯 Objectif du projet
+
+Développer une application permettant de gérer le fonctionnement pédagogique et administratif d’une **école** : élèves, enseignants, classes, matières, emplois du temps et évaluations.
+
+---
+
+## 🧩 Contexte
+
+L’école accueille des élèves répartis par classes et propose plusieurs matières enseignées par des enseignants.
+Chaque élève suit un emploi du temps hebdomadaire et reçoit des **notes** pour chaque matière.
+
+---
+
+## 📂 Fonctionnalités attendues
+
+### 1️⃣ Gestion des élèves
+
+Chaque élève est caractérisé par :
+
+* Identifiant unique
+* Nom et prénom
+* Date de naissance
+* Niveau scolaire
+* Classe affectée
+* Historique des notes
+
+**Règles :**
+
+* Un élève appartient à une seule classe
+* Un élève ne peut pas être inscrit deux fois dans la même classe
+
+---
+
+### 2️⃣ Gestion des enseignants
+
+Chaque enseignant possède :
+
+* Identifiant unique
+* Nom et prénom
+* Spécialité
+* Liste des matières enseignées
+
+**Règles :**
+
+* Un enseignant peut enseigner plusieurs matières
+* Une matière doit avoir au moins un enseignant
+
+---
+
+### 3️⃣ Gestion des classes
+
+Une classe est définie par :
+
+* Code classe unique
+* Niveau
+* Année scolaire
+* Liste des élèves
+* Emploi du temps associé
+
+**Règles :**
+
+* Une classe a une capacité maximale d’élèves
+* Un élève ne peut changer de classe qu’à la fin de l’année scolaire
+
+---
+
+### 4️⃣ Gestion des matières
+
+Une matière contient :
+
+* Code matière unique
+* Intitulé
+* Coefficient
+* Enseignant responsable
+
+**Règles :**
+
+* Le coefficient est utilisé pour le calcul des moyennes
+* Une matière est associée à une ou plusieurs classes
+
+---
+
+### 5️⃣ Gestion de l’emploi du temps
+
+Un créneau horaire est défini par :
+
+* Jour de la semaine
+* Heure de début et heure de fin
+* Classe concernée
+* Matière enseignée
+* Enseignant
+
+**Règles métier :**
+
+* Deux cours ne peuvent pas avoir lieu en même temps pour une même classe
+* Un enseignant ne peut pas assurer deux cours au même moment
+
+---
+
+### 6️⃣ Gestion des évaluations et notes
+
+Une évaluation est caractérisée par :
+
+* Identifiant unique
+* Matière concernée
+* Classe concernée
+* Date de l’évaluation
+
+Une note contient :
+
+* Élève concerné
+* Évaluation associée
+* Valeur de la note (0 à 20)
+
+**Règles :**
+
+* Une seule note par élève et par évaluation
+* La moyenne d’un élève est calculée en tenant compte des coefficients
+
+---
+
+## ⚙️ Contraintes techniques
+
+* Programmation orientée objet (Java)
+* Utilisation de `LocalDate` et `LocalTime`
+* Respect de l’encapsulation
+* Validation des données
+* Gestion des exceptions métier
+
+---
+
+## 🧪 Cas de test attendus
+
+* Ajout d’un élève dans une classe complète
+* Conflit d’emploi du temps
+* Saisie d’une note invalide
+* Calcul correct des moyennes
+* Affectation correcte des enseignants
+
+---
+
+## 🏁 Livrables
+
+* Diagramme de classes UML
+* Code source documenté
+* Tests unitaires
+* Rapport explicatif
+
+---
+
+Si tu veux, je peux aussi te proposer une **version plus simple**, une **version examen**, ou une **version avancée (Spring/JPA)** 😉

@@ -1,0 +1,190 @@
+# Énoncé POO Java : Système de Gestion d'Événements Sportifs
+
+## Contexte
+Vous devez développer une application de gestion d'événements sportifs pour une fédération régionale. Le système doit gérer les compétitions, les équipes, les athlètes et les résultats.
+
+## Description du système
+
+### 1. Acteurs du système
+- **Organisateur** : crée et gère les événements
+- **Arbitre** : valide les résultats, gère les litiges
+- **Entraîneur** : inscrit ses athlètes/équipes
+- **Athlète** : participe aux compétitions
+- **Spectateur** : achète des billets, consulte les résultats
+
+### 2. Types d'événements
+- **Compétition individuelle** (athlétisme, natation, gymnastique)
+- **Compétition par équipes** (football, basket, rugby)
+- **Tournoi à élimination directe**
+- **Championnat avec poules**
+- **Compétition multi-sports** (ex : jeux régionaux)
+
+### 3. Lieux et infrastructures
+- **Stade** : avec capacité, type de terrain, installations
+- **Piscine** : nombre de couloirs, type (25m/50m)
+- **Gymnase** : équipements disponibles, surface
+- **Circuit extérieur** : longueur, dénivelé
+
+### 4. Participants
+**Athlète individuel** :
+- Nom, prénom, date de naissance, licence
+- Catégorie (âge, poids si pertinent)
+- Classement national/régional
+- Historique des performances
+
+**Équipe** :
+- Nom, club d'appartenance
+- Liste des membres + remplaçants
+- Entraîneur responsable
+- Couleurs, logo
+
+## Fonctionnalités requises
+
+### A. Gestion des événements
+1. **Création d'événement** :
+   - Définition du type (individuel/équipe)
+   - Sélection des épreuves/disciplines
+   - Fixation des dates et créneaux horaires
+   - Attribution des lieux et infrastructures
+   - Définition des règles spécifiques
+
+2. **Inscriptions** :
+   - Période d'inscription (ouverture/fermeture)
+   - Conditions d'éligibilité (licence, classement)
+   - Limite de participants par épreuve
+   - Validation des inscriptions par l'organisateur
+   - Paiement des frais d'inscription (si applicable)
+
+3. **Planification** :
+   - Génération automatique des calendriers
+   - Répartition des créneaux
+   - Gestion des conflits (mêmes athlètes sur 2 épreuves simultanées)
+   - Publication du programme
+
+### B. Gestion des compétitions
+1. **Déroulement** :
+   - Enregistrement des participants présents
+   - Attribution des numéros de dossard
+   - Gestion des séries/qualifications
+   - Suivi en temps réel des épreuves
+
+2. **Résultats** :
+   - Saisie des temps/performances
+   - Validation par les arbitres
+   - Calcul automatique des classements
+   - Gestion des ex-aequo
+   - Attribution des points (si championnat)
+
+3. **Règles spécifiques** :
+   - Pour les sports chronométrés : temps, pénalités
+   - Pour les sports notés : calcul des notes (moyenne, meilleure/pire)
+   - Pour les sports collectifs : buts, points, fautes
+
+### C. Gestion des spectateurs
+1. **Billetterie** :
+   - Vente en ligne et sur place
+   - Différents types de billets (journalier, passe 3 jours, VIP)
+   - Tarifs réduits (enfants, étudiants, groupes)
+   - Places numérotées ou placement libre
+
+2. **Accès** :
+   - Contrôle des billets (QR code)
+   - Gestion des capacités maximales
+   - Zones réservées (VIP, presse, familles)
+
+### D. Suivi et statistiques
+1. **Performances** :
+   - Records personnels/saison
+   - Progression des athlètes
+   - Comparaison avec les records régionaux/nationaux
+   - Statistiques par club/ville
+
+2. **Événement** :
+   - Taux de remplissage des sites
+   - Recettes billetterie
+   - Nombre de participants par discipline
+   - Météo du jour (impact sur performances)
+
+## Contraintes techniques
+
+### Règles métier
+1. Un athlète ne peut participer à 2 épreuves qui se chevauchent
+2. Les inscriptions sont définitives 48h avant l'épreuve
+3. En cas d'abandon, l'inscription n'est pas remboursée
+4. Les résultats doivent être validés par au moins 2 arbitres pour les finales
+5. Les mineurs doivent avoir une autorisation parentale
+6. Certaines épreuves ont des minima de qualification
+
+### Logique de classement
+- **Sports chronométrés** : du plus rapide au plus lent
+- **Sports notés** : de la note la plus haute à la plus basse
+- **Sports collectifs** : points → différence de buts → confrontations directes
+- **Tournois** : arbre d'élimination avec repêchage possible
+
+### Gestion des délais
+- Publication des résultats sous 1h après la fin
+- Délai de réclamation : 30 minutes après publication
+- Attribution des médailles : cérémonie sous 2h après validation
+
+## Évolutions potentielles (bonus)
+1. Application mobile pour :
+   - Résultats en temps réel
+   - Plans des sites
+   - Alertes (records battus, changements de programme)
+   
+2. Diffusion en streaming
+   - Intégration avec plateformes
+   - Commentaires en direct
+   - Replay des moments forts
+
+3. Système de parrainage
+   - Recherche de sponsors
+   - Visibilité des logos
+   - Suivi des engagements
+
+4. Gestion logistique
+   - Transport des athlètes
+   - Hébergement
+   - Restauration
+   - Matériel sportif
+
+## Livrables attendus
+- Diagrammes UML (classes, séquences, cas d'utilisation)
+- Code source avec architecture en couches
+- Base de données normalisée
+- API REST (si temps)
+- Documentation utilisateur et technique
+
+## Technologies imposées
+- Java 17+
+- Spring Boot (optionnel)
+- Base de données (au choix)
+- JUnit 5 et Mockito
+- Git avec gestion de branches
+
+## Données de test à prévoir
+- 50 athlètes minimum
+- 10 équipes minimum
+- 5 événements différents
+- 3 types de sports différents
+- Résultats complets pour chaque épreuve
+
+## Évaluation
+**Critères principaux** :
+1. **Gestion des héritages** : modélisation des différents sports
+2. **Polymorphisme** : traitement uniforme des résultats
+3. **Collections** : gestion efficace des listes d'athlètes/équipes
+4. **Exceptions** : gestion des cas d'erreur (disqualification, abandon)
+5. **Persistance** : sauvegarde/chargement des données
+
+**Points bonus pour** :
+- Design patterns appropriés (Strategy pour les règles, Observer pour les résultats)
+- Interface graphique propre
+- Algorithmes de planification intelligente
+- Génération de rapports PDF
+
+---
+
+**Durée estimée** : 3-4 semaines  
+**Niveau** : Avancé (projet de fin de semestre)  
+**Équipe** : 2-3 développeurs recommandé
