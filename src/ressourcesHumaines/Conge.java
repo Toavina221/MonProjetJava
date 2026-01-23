@@ -18,41 +18,35 @@ public class Conge {
     //Méthodes
     //Constructeur
     public Conge(String idConge, Employe employe, String typeConge, LocalDate dateDebut, LocalDate dateFin, int dureeJours, String statut, String motif, LocalDate dateDemande, Employe approuvePar) {
-        if(idConge == null || idConge.trim().isEmpty()){
+        if(idConge == null || idConge.trim().isEmpty())
              throw new IllegalArgumentException("L'id du congé ne peut pas être null");
-        }
-        else idConge = idConge ;
-        if(employe == null){
+        else this.idConge = idConge ;
+        if(employe == null)
             throw new IllegalArgumentException("L'employe ne peut pas être null");
-        }
         else this.employe = employe;
-        if(typeConge == null || typeConge.trim().isEmpty()){
+        if(typeConge == null || typeConge.trim().isEmpty())
             throw new IllegalArgumentException("Le type du congé ne peut pas être vide");
-        }
         else this.typeConge = typeConge;
-        if(date)
-        this.dateDebut = dateDebut;
-        if(dateFin.isAfter(dateDebut)){
+        if (dateDebut ==  null) 
+            throw new IllegalArgumentException("La date de début du congé ne peut pas être null");
+        else this.dateDebut = dateDebut;
+        if(dateFin != null &&dateFin.isAfter(dateDebut)) 
             this.dateFin = dateFin;
-        }
-        if (dureeJours >= 1) {
+        else throw new IllegalArgumentException("La date fin du congéne peut être ni null ni avant la date fin du congé");
+        if (dureeJours >= 1)  
             this.dureeJours = dureeJours;
-        }
-        if(statut ==  null || statut.trim.isEmpty()){
+        else throw new IllegalArgumentException("Durée invalide");
+        if(statut ==  null || statut.trim().isEmpty())
             throw new IllegalArgumentException("Le statut du congé ne peut pas êre vide");
-        }
         else this.statut = statut;
-        if (motif == null || motif.trim().isEmpty()){
+        if (motif == null || motif.trim().isEmpty())
             throw new IllegalArgumentException("Le motif du congé ne peut pas être vide");
-        }
         else this.motif = motif;
-        if(dateDemande == null || dateDemande.isBefore(dateDebut)){
+        if(dateDemande == null || dateDemande.isBefore(dateDebut))
             throw new IllegalArgumentException("La date de demande ne doit être ni null ni avant le date de début du congé");
-        }
         else this.dateDemande = dateDemande;
-        if(approuvePar == null){
+        if(approuvePar == null)
             throw new IllegalArgumentException("Le congé doit être approuvé par un manager ");
-        }
         else this.approuvePar = approuvePar;
     }
 
