@@ -1,0 +1,1166 @@
+ 
+
+# 📘 COURS 1 — INTRODUCTION À `FileInputStream` (Niveau Débutant)
+
+ 🎯 Objectifs du cours
+
+À la fin de ce cours, tu sauras :
+    * Ce qu’est un **Stream** en Java
+    * À quoi sert `FileInputStream`
+    * Comment lire un fichier simple
+    * Pourquoi Java utilise des **octets**
+ 
+ 1️⃣ Qu’est-ce qu’un Stream en Java ?
+
+📌 Définition simple
+Un Stream est un flux de données** qui circule :
+
+  soit vers ton programme (Input)
+  soit depuis ton programme (Output)
+
+💡 Image mentale :
+> Comme un tuyau d’eau 🚰 : les données passent goutte par goutte.
+
+
+
+ Types de streams en Java
+
+| Type         | Description        |
+| ------------ | ------------------ |
+| InputStream  | Lire des données   |
+| OutputStream | Écrire des données |
+| Reader       | Lire du texte      |
+| Writer       | Écrire du texte    |
+
+📌 `FileInputStream` appartient à :
+
+```java
+java.io.InputStream
+```
+
+---
+
+## 2️⃣ À quoi sert `FileInputStream` ?
+
+`FileInputStream` sert à **lire un fichier sous forme d’octets (bytes)**.
+
+📂 Exemples d’utilisation :
+
+* Fichiers texte
+* Images (PNG, JPG)
+* PDF
+* ZIP
+* Fichiers binaires
+
+🚨 **Important**
+`FileInputStream` **ne comprend pas le texte**, il lit seulement des **octets**.
+
+---
+
+## 3️⃣ Notion d’octet (Byte)
+
+📌 En Java :
+
+* 1 octet = 8 bits
+* type `byte` : de `-128` à `127`
+
+Quand on lit un fichier :
+
+* Java lit **1 octet à la fois**
+* Chaque octet est un nombre
+
+---
+
+## 4️⃣ Créer un `FileInputStream`
+
+### Syntaxe de base
+
+```java
+FileInputStream fis = new FileInputStream("test.txt");
+```
+
+📌 Que fait Java ici ?
+
+1. Ouvre le fichier
+2. Crée un canal de lecture
+3. Place le curseur au début
+
+🚨 Si le fichier n’existe pas → **Exception**
+
+---
+
+ 5️⃣ Lire un octet avec `read()`
+  Signature de la méthode
+
+```java
+int read() throws IOException
+```
+
+📌 Pourquoi `int` ?
+
+* 0 à 255 → octets valides
+* `-1` → fin du fichier
+  Exemple complet
+
+```java
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            FileInputStream fis = new FileInputStream("test.txt");
+
+            int b;
+            while ((b = fis.read()) != -1) {
+                System.out.print((char) b);
+            }
+
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+📌 Ce que fait ce code :
+
+* Lit chaque octet
+* Le convertit en caractère
+* L’affiche
+
+---
+
+  6️⃣ Fin de fichier (`-1`)
+
+Quand `read()` retourne : 
+    -1
+ 
+👉 Cela signifie **fin du fichier**
+❌ Ne jamais faire :
+    while (fis.read() != -1) { }
+
+(car tu perds des données)
+
+  7️⃣ Problèmes courants (débutants)
+❌ Oublier de fermer le fichier
+❌ Ne pas gérer les exceptions
+❌ Lire un fichier Unicode avec `FileInputStream`
+
+  8️⃣ Mini-exercices (À FAIRE)
+  🧪 Exercice 1
+Créer un fichier `hello.txt` avec :
+```
+Bonjour Java
+```
+Lire et afficher son contenu avec `FileInputStream`.
+
+  🧪 Exercice 2
+
+Modifier le programme pour :
+* Compter le nombre d’octets lus
+
+### 🧪 Exercice 3 (réflexion)
+
+👉 Pourquoi Java n’utilise pas directement `char` pour lire un fichier ?
+  📌 Résumé du cours
+✔ `FileInputStream` lit des **octets**
+✔ `read()` retourne `int`
+✔ `-1` = fin de fichier
+✔ Toujours fermer le stream
+
+
+📘 COURS 2 — Exceptions, `try-with-resources` et bonnes pratiques (FileInputStream)
+
+## 🎯 Objectifs du cours 2
+
+À la fin de ce cours, tu sauras :
+
+* Pourquoi Java **force** les exceptions en I/O
+* La différence entre `checked` et `unchecked`
+* Pourquoi `try-with-resources` est indispensable
+* Les erreurs classiques à éviter
+
+1️⃣ Pourquoi les exceptions en I/O ?
+
+Quand tu lis un fichier, Java dépend de choses **hors du programme** :
+    * disque dur
+    * permissions
+    * fichier supprimé
+    * fichier déjà ouvert
+    * erreur système
+
+👉 Java **ne peut pas garantir** que ça va marcher.
+📌 Donc il **t’oblige** à gérer les erreurs.
+---
+
+2️⃣ Les exceptions importantes avec `FileInputStream`
+
+    🔹 `FileNotFoundException`
+
+```java
+new FileInputStream("inexistant.txt");
+```
+📌 Causes :
+    * fichier inexistant
+    * mauvais chemin
+    * pas de permission
+---
+
+    🔹 `IOException`
+
+📌 Exception générale I/O
+👉 Parent de presque toutes les erreurs de lecture
+
+```java
+catch (IOException e)
+```
+✔ Bonne pratique : attraper **IOException**, pas `Exception`
+---
+
+3️⃣ Checked vs Unchecked (fondamental)
+
+ ✔ Checked Exception
+    * Doit être gérée
+    * Vérifiée à la compilation
+
+Exemple :
+
+```java
+IOException
+```
+
+ ❌ Unchecked Exception
+    * Optionnelle
+    * Erreur de logique
+
+Exemples :
+
+```java
+NullPointerException
+ArrayIndexOutOfBoundsException
+```
+
+📌 I/O = **toujours checked**
+
+---
+
+4️⃣ Mauvaise pratique : `catch (Exception e)`
+
+❌
+
+```java
+catch (Exception e) { }
+```
+
+Pourquoi c’est mauvais 
+    * Cache les bugs
+    * Rend le code flou
+    * Mauvais en équipe
+
+✔ À faire :
+
+```java
+catch (IOException e)
+```
+
+
+5️⃣ Problème MAJEUR : fermeture des ressources
+
+    ❌ Ancienne façon (dangereuse)
+
+```java
+FileInputStream fis = new FileInputStream("f.txt");
+// lecture
+fis.close();
+```
+
+💥 Si une exception survient → `close()` jamais appelé
+ 
+
+6️⃣ ✅ Solution officielle : `try-with-resources`
+
+```java
+try (FileInputStream fis = new FileInputStream("f.txt")) {
+    // lecture
+}
+```
+
+📌 Java appelle automatiquement :
+```java
+fis.close();
+```
+même s’il y a une exception.
+
+7️⃣ Pourquoi ça marche ?
+
+`FileInputStream` implémente :
+```java
+AutoCloseable
+```
+
+👉 Toutes les ressources I/O modernes doivent l’implémenter.
+
+8️⃣ Exemple COMPLET propre (cours 2)
+
+```java
+try (FileInputStream fis = new FileInputStream("fichier.txt")) {
+    int b;
+    while ((b = fis.read()) != -1) {
+        System.out.print((char) b);
+    }
+} catch (IOException e) {
+    System.err.println("Erreur de lecture du fichier");
+    e.printStackTrace();
+}
+```
+
+✔ lisible
+✔ sûr
+✔ pro
+
+9️⃣ Erreurs fréquentes (à graver 🧠)
+    ❌ Oublier `try-with-resources`
+    ❌ Attraper `Exception`
+    ❌ Supposer que le fichier existe
+    ❌ Mélanger chemins absolus / relatifs
+    ❌ Ignorer l’exception
+
+ 🧪 Mini-exercices – COURS 2
+
+Exercice 1
+    Supprimer le fichier et observer l’exception levée.
+ Exercice 2
+    Afficher un message personnalisé :
+
+```text
+Fichier introuvable
+```
+Exercice 3 (réflexion)
+
+👉 Pourquoi Java **oblige** à gérer `IOException`, mais pas `NullPointerException` ?
+
+## 📌 Résumé COURS 2
+
+✔ I/O = opérations risquées
+✔ Exceptions obligatoires
+✔ `try-with-resources` = norme
+✔ Code lisible et sûr
+
+👉 Quand tu veux, on enchaîne avec :
+
+## 📘 COURS 3 — Lecture avec buffer (`byte[]`) ⚡
+
+*(Performance & bonnes pratiques)*
+
+---
+
+## 🎯 Objectifs du cours 3
+
+À la fin de ce cours, tu sauras :
+
+* Pourquoi lire **octet par octet est lent**
+* Comment lire un fichier avec un **buffer**
+* Utiliser correctement `read(byte[])`
+* Écrire du code **utilisable en production**
+
+---
+
+## 1️⃣ Problème de `read()` simple
+
+### Ce que tu faisais avant
+
+```java
+int b;
+while ((b = fis.read()) != -1) {
+    // ...
+}
+```
+
+📌 Problème :
+
+* 1 appel système **par octet**
+* Très lent pour gros fichiers
+
+👉 Acceptable pour apprendre, **pas pour un vrai projet**.
+
+---
+
+## 2️⃣ Solution : lire par blocs (buffer)
+
+### Principe
+
+On lit **plusieurs octets d’un coup** dans un tableau :
+
+```java
+byte[] buffer = new byte[1024]; // 1 KB
+```
+
+📌 Le système lit **jusqu’à 1024 octets** en une seule opération.
+
+---
+
+## 3️⃣ Méthode clé : `read(byte[])`
+
+### Signature
+
+```java
+int read(byte[] buffer) throws IOException
+```
+
+📌 Retourne :
+
+* nombre d’octets réellement lus
+* `-1` → fin du fichier
+
+⚠️ Important :
+
+> le buffer n’est pas toujours rempli entièrement
+
+---
+
+## 4️⃣ Exemple COMPLET (lecture avec buffer)
+
+```java
+try (FileInputStream fis = new FileInputStream(fichier.toFile())) {
+
+    byte[] buffer = new byte[1024];
+    int bytesRead;
+    int total = 0;
+
+    while ((bytesRead = fis.read(buffer)) != -1) {
+        total += bytesRead;
+
+        // Affichage (pour fichier texte simple)
+        System.out.print(new String(buffer, 0, bytesRead));
+    }
+
+    System.out.println("\nTotal octets lus : " + total);
+
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
+---
+
+## 5️⃣ Points TRÈS importants (exam / pro)
+
+### ⚠️ Erreur classique ❌
+
+```java
+System.out.print(new String(buffer));
+```
+
+❌ FAUX
+👉 affiche des données parasites
+
+✔ CORRECT :
+
+```java
+new String(buffer, 0, bytesRead)
+```
+
+---
+
+## 6️⃣ Taille du buffer : combien ?
+
+| Taille        | Usage        |
+| ------------- | ------------ |
+| 512 B         | ancien       |
+| 1024 B (1 KB) | ok           |
+| 4096 B (4 KB) | recommandé   |
+| 8192 B (8 KB) | très courant |
+
+📌 En général :
+
+```java
+byte[] buffer = new byte[4096];
+```
+
+---
+
+## 7️⃣ Comparaison performance (conceptuel)
+
+| Méthode               | Vitesse           |
+| --------------------- | ----------------- |
+| `read()`              | 🐢 très lent      |
+| `read(byte[])`        | 🚀 rapide         |
+| `BufferedInputStream` | 🚀🚀 encore mieux |
+
+---
+
+## 8️⃣ Quand utiliser `FileInputStream` + buffer ?
+
+✔ fichiers binaires
+✔ copie de fichiers
+✔ upload / download
+✔ traitement batch
+
+❌ pas idéal pour texte Unicode (UTF-8 avancé)
+
+---
+
+## 🧪 Exercices — COURS 3
+
+### Exercice 1
+
+Lire un fichier avec un buffer de 4096 octets
+➡️ afficher le contenu
+➡️ afficher la taille totale
+
+---
+
+### Exercice 2
+
+Copier un fichier :
+
+```
+source.txt → copie.txt
+```
+
+---
+
+### Exercice 3 (réflexion)
+
+👉 Pourquoi `read(byte[])` peut retourner un nombre **plus petit que la taille du buffer** ?
+
+---
+
+## 📌 Résumé COURS 3
+
+✔ lecture par blocs
+✔ énorme gain de performance
+✔ gestion correcte de `bytesRead`
+✔ prêt pour des fichiers volumineux
+
+---
+
+😄 parfait — **COURS 4**, on y va.
+Là on touche à un truc **très important en Java pro** : **`BufferedInputStream`** et **le pattern Decorator**.
+
+---
+
+ 📘 COURS 4 — `BufferedInputStream` & Decorator Pattern
+
+---
+
+ 🎯 Objectifs du cours 4
+
+À la fin, tu sauras :
+    * Pourquoi `BufferedInputStream` existe
+    * Comment l’utiliser correctement
+    * Ce qu’est le **Decorator Pattern**
+    * Pourquoi c’est partout en Java I/O
+
+1️⃣ Problème à résoudre (le vrai)
+
+Même avec :
+
+    ```java
+    byte[] buffer = new byte[4096];
+    fis.read(buffer);
+    ```
+👉 chaque appel va quand même **au système**.
+📌 Le disque est lent, les appels système coûtent cher.
+
+---
+ 2️⃣ Solution : `BufferedInputStream`
+
+### Rôle
+
+👉 Ajouter un **tampon interne** entre ton code et le disque.
+
+    ```text
+    Disque → [Buffer interne] → Ton programme
+    ```
+
+Résultat :
+    * moins d’accès disque
+    * meilleures performances
+    * code plus propre
+
+---
+ 3️⃣ Création d’un `BufferedInputStream`
+
+    ```java
+    BufferedInputStream bis =
+        new BufferedInputStream(new FileInputStream(fichier.toFile()));
+    ```
+
+📌 Tu ne remplaces pas `FileInputStream`
+📌 Tu **l’enrobes**
+
+---
+
+4️⃣ Exemple COMPLET (lecture PRO)
+
+    ```java
+    try (
+        BufferedInputStream bis =
+            new BufferedInputStream(
+                new FileInputStream(fichier.toFile())
+            )
+    ) {
+        byte[] buffer = new byte[4096];
+        int bytesRead;
+        int total = 0;
+
+        while ((bytesRead = bis.read(buffer)) != -1) {
+            total += bytesRead;
+            System.out.print(new String(buffer, 0, bytesRead));
+        }
+
+        System.out.println("\nTotal octets : " + total);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    ```
+
+---
+5️⃣ Différence clé avec buffer manuel
+
+| Buffer manuel  | BufferedInputStream |
+| -------------- | ------------------- |
+| Géré par toi   | Géré par Java       |
+| Niveau bas     | Niveau plus haut    |
+| Toujours utile | Recommandé          |
+
+📌 En pratique : **on combine les deux**.
+
+---
+
+6️⃣ Le Decorator Pattern (important 💡)
+
+### Définition simple
+👉 Ajouter des fonctionnalités **sans modifier la classe originale**.
+
+### Exemple visuel
+
+    ```java
+    InputStream in =
+        new BufferedInputStream(
+            new FileInputStream("fichier.txt")
+        );
+    ```
+📌 Chaque couche **ajoute un comportement**.
+
+---
+ 7️⃣ Autres décorateurs célèbres
+
+| Classe              | Rôle                 |
+| ------------------- | -------------------- |
+| `DataInputStream`   | Lire types primitifs |
+| `ObjectInputStream` | Lire objets          |
+| `GZIPInputStream`   | Décompression        |
+| `CipherInputStream` | Chiffrement          |
+
+👉 Tous utilisent le **même principe**
+
+8️⃣ Quand utiliser `BufferedInputStream` ?
+
+    ✔ presque toujours avec fichiers
+    ✔ fichiers volumineux
+    ✔ performance critique
+❌ inutile pour très petits fichiers
+
+---
+
+## 🧪 Exercices — COURS 4
+### Exercice 1
+Lire un fichier avec :
+
+```java
+BufferedInputStream + buffer 8192
+```
+
+---
+### Exercice 2
+Comparer :
+    * `FileInputStream` seul
+    * `FileInputStream + buffer`
+    * `BufferedInputStream + buffer`
+
+---
+
+### Exercice 3 (réflexion)
+👉 Pourquoi Java n’a **pas** intégré le buffer directement dans `FileInputStream` ?
+
+---
+
+## 📌 Résumé COURS 4
+
+✔ buffering automatique
+✔ Decorator Pattern compris
+✔ architecture I/O Java
+✔ code production-ready
+
+---
+
+😄 parfait — **COURS 5**, on y va.
+Attache la ceinture : c’est **le cours le plus important pour le texte en Java**.
+
+---
+
+# 📘 COURS 5 — Texte, encodage et UTF-8
+
+*(Le piège n°1 en Java I/O)*
+
+---
+## 🎯 Objectifs du cours 5
+
+À la fin, tu sauras :
+    * Pourquoi ton code peut afficher des caractères cassés
+    * La différence **octets vs caractères**
+    * Ce qu’est un **encodage**
+    * Pourquoi `FileInputStream` n’est **pas fait pour le texte**
+    * Comment lire du texte **correctement en UTF-8**
+---
+
+1️⃣ Le problème fondamental
+Ton code actuel :
+
+    ```java
+    new String(buffer, 0, b)
+    ```
+👉 Tu fais :
+```
+octets (byte[]) → caractères (String)
+```
+📌 MAIS **sans dire comment convertir**.
+
+Java choisit alors :
+
+> l’encodage par défaut du système
+
+💥 Résultat :
+
+    * Windows → CP1252
+    * Linux → UTF-8
+    * Serveur → autre…
+
+👉 Code **non portable**.
+---
+
+ 2️⃣ Exemple du bug (classique)
+
+### Fichier `textes.txt`
+
+    ```
+    Bonjour Java
+    é è à ç
+    ```
+
+### Résultat possible
+    ```
+    Bonjour Java
+    � � � �
+    ```
+
+👉 Le fichier est bon
+👉 Le code est mauvais
+---
+
+3️⃣ Pourquoi ça casse ? (clé 🔑)
+### UTF-8 ≠ 1 octet = 1 caractère
+
+| Caractère | Octets UTF-8 |
+| --------- | ------------ |
+| A         | 1            |
+| é         | 2            |
+| €         | 3            |
+| 😊        | 4            |
+
+👉 Ton buffer peut **couper un caractère en plein milieu**.
+---
+
+4️⃣ Règle d’or (à graver)
+
+> ❌ `FileInputStream` = **binaire**
+> ✅ `Reader` = **texte**
+---
+
+5️⃣ La BONNE solution : `InputStreamReader`
+### Pourquoi ?
+👉 Il sait :
+    * gérer UTF-8
+    * reconstituer les caractères
+    * gérer les coupures de buffer
+---
+6️⃣ Lecture correcte d’un fichier texte (UTF-8)
+
+    ```java
+    Path fichier = Path.of("C:\\Users\\toavina\\Desktop\\java\\textes.txt");
+
+    try (
+        InputStreamReader reader =
+            new InputStreamReader(
+                new FileInputStream(fichier.toFile()),
+                StandardCharsets.UTF_8
+            )
+    ) {
+        char[] buffer = new char[4096];
+        int charsRead;
+
+        while ((charsRead = reader.read(buffer)) != -1) {
+            System.out.print(new String(buffer, 0, charsRead));
+        }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    ```
+---
+
+ 7️⃣ Encore mieux : `BufferedReader`
+
+    ```java
+    try (
+        BufferedReader br =
+            Files.newBufferedReader(fichier, StandardCharsets.UTF_8)
+    ) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+    }
+    ```
+✔ simple
+✔ lisible
+✔ UTF-8 safe
+✔ standard pro
+---
+
+8️⃣ Comparaison des approches
+
+| API                     | Usage              |
+| ----------------------- | ------------------ |
+| FileInputStream         | binaire            |
+| BufferedInputStream     | binaire performant |
+| InputStreamReader       | binaire → texte    |
+| BufferedReader          | texte              |
+| Files.newBufferedReader | texte moderne      |
+---
+
+ 🧪 Exercices — COURS 5
+
+Exercice 1
+Créer un fichier avec :
+
+    ```
+    é è à ç 😊
+    ```
+Lire avec :
+    * ton ancien code ❌
+    * `BufferedReader` ✅
+---
+ Exercice 2
+Pourquoi `BufferedReader.readLine()` ne casse jamais les caractères UTF-8 ?
+---
+
+ Exercice 3 (entretien)
+👉 Quand faut-il **absolument éviter** `FileInputStream` ?
+---
+
+ 📌 Résumé COURS 5
+
+✔ octets ≠ caractères
+✔ encodage explicite obligatoire
+✔ UTF-8 maîtrisé
+✔ API correcte pour le texte
+
+---
+🎉 **À ce stade, tu es déjà au-dessus de beaucoup de développeurs Java.**
+😄 parfait — **COURS 6** 🚀
+Là on entre dans **le Java moderne**, celui utilisé **en entreprise**, surtout côté backend.
+
+---
+
+📘 COURS 6 — Java NIO / NIO.2
+*(Files, Path, Channels — niveau pro)*
+
+🎯 Objectifs du cours 6
+
+À la fin, tu sauras :
+    * Pourquoi Java a créé **NIO**
+    * Utiliser `Path` et `Files` correctement
+    * Lire des fichiers en **une ligne**
+    * Comprendre les **Channels**
+    * Savoir quand **ne pas** utiliser `FileInputStream`
+---
+
+ 1️⃣ Pourquoi NIO existe ?
+
+Les anciens I/O (`java.io`) :
+    * bloquants
+    * peu flexibles
+    * difficiles à scaler
+
+👉 **NIO (New I/O)** apporte :
+    * meilleures performances
+    * API moderne
+    * meilleure gestion des gros fichiers
+    * meilleure intégration serveur
+---
+
+2️⃣ `Path` : remplaçant de `File`
+❌ Ancien :
+    ```java
+    File f = new File("test.txt");
+    ```
+✅ Moderne :
+    ```java
+    Path p = Path.of("test.txt");
+    ```
+
+✔ immuable
+✔ portable
+✔ puissant
+---
+
+3️⃣ Lire un fichier simplement (NIO)
+
+🔹 Lire tout le fichier
+    ```java
+    String contenu = Files.readString(fichier, StandardCharsets.UTF_8);
+    System.out.println(contenu);
+    ```
+⚠️ À éviter pour gros fichiers
+---
+
+### 🔹 Lire toutes les lignes
+```java
+List<String> lignes =
+    Files.readAllLines(fichier, StandardCharsets.UTF_8);
+```
+
+ 4️⃣ Lire un fichier comme un Stream
+    ```java
+    try (Stream<String> lignes = Files.lines(fichier, StandardCharsets.UTF_8)) {
+        lignes.forEach(System.out::println);
+    }
+    ```
+✔ paresseux
+✔ mémoire maîtrisée
+✔ très utilisé
+---
+## 5️⃣ Channels — niveau avancé
+### Concept
+👉 Canal = lecture directe vers buffers
+
+    ```java
+    try (FileChannel channel = FileChannel.open(fichier)) {
+        ByteBuffer buffer = ByteBuffer.allocate(4096);
+        while (channel.read(buffer) > 0) {
+            buffer.flip();
+            // traitement
+            buffer.clear();
+        }
+    }
+    ```
+📌 Utilisé pour :
+    * gros fichiers
+    * haute performance
+    * serveurs
+---
+6️⃣ Comparaison des APIs
+
+| Besoin             | API              |
+| ------------------ | ---------------- |
+| Texte simple       | BufferedReader   |
+| Fichier petit      | Files.readString |
+| Gros fichier texte | Files.lines      |
+| Binaire            | FileChannel      |
+| Très haute perf    | NIO              |
+---
+
+7️⃣ Quand éviter `FileInputStream` ?
+    ❌ Lecture texte
+    ❌ Encodage
+    ❌ Gros fichiers
+    ❌ Code moderne
+
+✔ Utilisable encore pour :
+    * fichiers binaires simples
+    * apprentissage
+---
+
+🧪 Exercices — COURS 6
+
+Exercice 1
+Lire un fichier avec :
+
+    ```java
+    Files.lines(...)
+    ```
+--
+
+Exercice 2
+Comparer :
+    * `BufferedReader`
+    * `Files.lines`
+---
+### Exercice 3 (réflexion)
+👉 Pourquoi `Files.lines()` doit être fermé ?
+---
+## 📌 Résumé COURS 6
+✔ NIO moderne
+✔ API simples
+✔ haute performance
+✔ prêt pour backend
+---
+😄 excellent choix — **COURS 7**.
+Là, on quitte le “cours” pour entrer dans **la vraie vie de développeur Java**.
+
+---
+
+# 📘 COURS 7 — Cas réels professionnels (Java I/O)
+
+---
+
+## 🎯 Objectifs du cours 7
+
+À la fin, tu sauras :
+
+* Copier des fichiers correctement
+* Gérer des **gros fichiers**
+* Implémenter un **upload / download**
+* Éviter les erreurs classiques en production
+* Écrire du code **maintenable**
+
+---
+
+## 🧩 CAS 1 — Copier un fichier (bonne pratique)
+
+### ❌ Mauvaise façon
+
+```java
+Files.readAllBytes(source);
+```
+
+💥 Explose la mémoire sur gros fichiers
+
+---
+
+### ✅ Bonne façon (NIO, bufferisé)
+
+```java
+Path source = Path.of("source.txt");
+Path destination = Path.of("copie.txt");
+
+try (InputStream in = Files.newInputStream(source);
+     OutputStream out = Files.newOutputStream(destination)) {
+
+    byte[] buffer = new byte[8192];
+    int bytesRead;
+
+    while ((bytesRead = in.read(buffer)) != -1) {
+        out.write(buffer, 0, bytesRead);
+    }
+}
+```
+
+---
+
+## 🧩 CAS 2 — Copier encore plus simple (API moderne)
+
+```java
+Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
+```
+
+✔ lisible
+✔ sûr
+✔ utilisé partout
+
+---
+
+## 🧩 CAS 3 — Lecture de gros fichier texte
+
+```java
+try (Stream<String> lignes = Files.lines(fichier, StandardCharsets.UTF_8)) {
+    lignes.forEach(line -> {
+        // traitement
+    });
+}
+```
+
+✔ mémoire constante
+✔ scalable
+
+---
+
+## 🧩 CAS 4 — Upload de fichier (backend)
+
+```java
+public void upload(InputStream input, Path destination) throws IOException {
+    Files.copy(input, destination, StandardCopyOption.REPLACE_EXISTING);
+}
+```
+
+📌 Typique Spring Boot :
+
+```java
+MultipartFile file;
+file.getInputStream();
+```
+
+---
+
+## 🧩 CAS 5 — Download de fichier
+
+```java
+public InputStream download(Path fichier) throws IOException {
+    return Files.newInputStream(fichier);
+}
+```
+
+---
+
+## ⚠️ Erreurs classiques en production
+
+❌ lire tout en mémoire
+❌ oublier l’encodage
+❌ oublier de fermer les streams
+❌ `catch(Exception e)`
+❌ chemins hardcodés
+
+---
+
+## 🎯 Question d’entretien (très fréquente)
+
+> ❓ Comment copier un fichier de 10 Go sans saturer la mémoire ?
+
+👉 Réponse :
+
+* stream + buffer
+* ou `Files.copy()`
+
+---
+
+## 📌 Résumé COURS 7
+
+✔ cas réels
+✔ code industrie
+✔ scalable
+✔ prêt backend
+
+---
+
+## 🏁 Et maintenant ?
+
+👉 **Honnêtement** : tu as atteint le **niveau professionnel solide** en Java I/O.
+
+Il reste deux options (bonus 🔥) :
+
+### 🟣 COURS 8 — Bonnes pratiques industrie + pièges d’entretien
+
+### 🟢 Mini-projet final (upload / traitement fichier)
+
+😄
+Dis-moi : **8 ou mini-projet ?**
+
+
+
+
