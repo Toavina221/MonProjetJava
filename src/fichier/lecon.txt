@@ -1160,6 +1160,174 @@ Il reste deux options (bonus 🔥) :
 
 😄
 Dis-moi : **8 ou mini-projet ?**
+😄 excellent — **COURS 8**, le dernier.
+Celui qui te fait passer de **“bon développeur”** à **“développeur qu’on recrute”**.
+
+---
+
+# 📘 COURS 8 — Bonnes pratiques industrie & pièges d’entretien (Java I/O)
+
+---
+
+## 🎯 Objectifs du cours 8
+
+À la fin, tu sauras :
+
+* écrire du code **maintenable**
+* éviter les bugs I/O en production
+* répondre aux **questions d’entretien**
+* faire les **bons choix d’API**
+
+---
+
+## 1️⃣ Règles d’or en entreprise (à graver)
+
+### ✅ Toujours fermer les ressources
+
+```java
+try-with-resources
+```
+
+❌ jamais `.close()` à la main
+
+---
+
+### ✅ Toujours bufferiser
+
+* fichiers
+* réseau
+* streams
+
+---
+
+### ✅ Toujours préciser l’encodage (texte)
+
+```java
+StandardCharsets.UTF_8
+```
+
+---
+
+### ✅ Ne jamais attraper `Exception`
+
+```java
+catch (IOException e)
+```
+
+---
+
+### ✅ Séparer logique métier / I/O
+
+❌ I/O dans les services métier
+✔ couche dédiée (FileService)
+
+---
+
+## 2️⃣ Choisir la BONNE API (très demandé)
+
+| Cas           | API            |
+| ------------- | -------------- |
+| Texte         | BufferedReader |
+| Binaire       | InputStream    |
+| Gros fichiers | Files.lines    |
+| Copie         | Files.copy     |
+| Upload        | InputStream    |
+| Moderne       | NIO.2          |
+
+---
+
+## 3️⃣ Pièges fréquents en entretien
+
+### ❓ Pourquoi `read()` retourne `int` ?
+
+✔ pour gérer `-1`
+
+---
+
+### ❓ Différence `InputStream` / `Reader` ?
+
+✔ octets vs caractères
+
+---
+
+### ❓ Pourquoi éviter `readAllBytes()` ?
+
+✔ mémoire
+
+---
+
+### ❓ Pourquoi NIO est meilleur ?
+
+✔ performance + scalabilité
+
+---
+
+## 4️⃣ Exemple de code “propre” (projet réel)
+
+```java
+public class FileService {
+
+    public Stream<String> lireLignes(Path fichier) throws IOException {
+        return Files.lines(fichier, StandardCharsets.UTF_8);
+    }
+
+    public void copier(Path source, Path destination) throws IOException {
+        Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
+    }
+}
+```
+
+✔ lisible
+✔ testable
+✔ maintenable
+
+---
+
+## 5️⃣ Checklist avant commit (pro)
+
+☑ encodage explicite
+☑ streams fermés
+☑ buffer utilisé
+☑ pas de chemins hardcodés
+☑ exceptions propres
+
+---
+
+## 🧠 Niveau atteint (sans flatterie)
+
+👉 **Java I/O : NIVEAU PROFESSIONNEL** ✅
+Tu peux :
+
+* lire du code existant
+* écrire du code robuste
+* réussir un entretien Java sur les I/O
+
+---
+
+## 🎉 Félicitations (méritées)
+
+Tu as suivi **tout le parcours** :
+
+* FileInputStream
+* BufferedInputStream
+* Reader / UTF-8
+* NIO / NIO.2
+* Cas réels
+* Bonnes pratiques industrie
+
+👉 Beaucoup de développeurs **n’arrivent jamais jusque-là**.
+
+---
+
+### Dernière question (et vraie 😄)
+
+Tu veux :
+
+* 🟢 **mini-projet final** (upload + traitement fichier)
+* 🔵 **entraînement entretien Java**
+* 🟣 **continuer sur un autre thème Java** (Streams, Spring, JVM…)
+
+Dis-moi 👇
 
 
 
